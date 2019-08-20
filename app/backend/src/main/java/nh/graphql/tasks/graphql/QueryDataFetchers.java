@@ -31,6 +31,14 @@ public class QueryDataFetchers {
     }
   };
 
+  DataFetcher<Optional<User>> user = new DataFetcher<>() {
+    @Override
+    public Optional<User> get(DataFetchingEnvironment environment) {
+      String userId = environment.getArgument("id");
+      return userService.getUser(userId);
+    }
+  };
+
   DataFetcher<Optional<Project>> project = new DataFetcher<>() {
     @Override
     public Optional<Project> get(DataFetchingEnvironment environment) {

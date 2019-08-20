@@ -85,6 +85,10 @@ public class Task {
     return state;
   }
 
+  public void setState(TaskState state) {
+    this.state = state;
+  }
+
   public long getId() {
     return id;
   }

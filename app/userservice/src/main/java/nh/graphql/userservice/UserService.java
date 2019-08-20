@@ -34,7 +34,7 @@ public class UserService {
   @GetMapping("/users")
   public Object getUsers() {
     int usersRequestCounter = this.usersRequestCounter.incrementAndGet();
-    logger.info("READING ALL USERS (REQUEST-ID: {}})", usersRequestCounter);
+    logger.info("READING ALL USERS (REQUEST-ID: {})", usersRequestCounter);
 
     return allUsers.stream().map(user -> mapUserToDtoWithRequestId(user, "users_" + usersRequestCounter))
         .collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class UserService {
   @GetMapping("/users/{userId}")
   public Object getUserById(@PathVariable String userId) {
     int usersByIdCounter = this.usersByIdCounter.incrementAndGet();
-    logger.info("READING USER WITH ID '{}'' (REQUEST-ID: {}})", userId, usersByIdCounter);
+    logger.info("READING USER WITH ID '{}' (REQUEST-ID: {})", userId, usersByIdCounter);
 
     return allUsers.stream().filter(u -> userId.equals(u.getId()))
         .map(user -> mapUserToDtoWithRequestId(user, "users_" + usersByIdCounter)).findFirst().orElseThrow(

@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -31,11 +33,16 @@ public class UserService {
 
   public Optional<User> getUser(String userId) {
     logger.info("READING USER WITH ID '{}' FROM '{}'", userId, this.userServiceUrl);
-    User user = restTemplate.getForObject(this.userServiceUrl + "/{userId}", User.class, userId);
+    User user = null;
+    try {
+      user = restTemplate.getForObject(this.userServiceUrl + "/{userId}", User.class, userId);
+    } catch (HttpClientErrorException ex) {
+      if (ex.getStatusCode() != HttpStatus.NOT_FOUND) {
+        throw ex;
+      }
+    }
 
-    logger.info("USER {}", user);
-
-    return Optional.of(user);
+    return Optional.ofNullable(user);
   }
 
   public List<User> getAllUsers() {

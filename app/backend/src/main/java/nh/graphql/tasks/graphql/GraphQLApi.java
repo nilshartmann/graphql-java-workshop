@@ -44,15 +44,21 @@ public class GraphQLApi {
     InputStream inputStream = getClass().getResourceAsStream("/tasks.graphqls");
     TypeDefinitionRegistry typeRegistry = schemaParser.parse(new InputStreamReader(inputStream));
 
-    RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring()
-        .type(newTypeWiring("Query").dataFetcher("users", queryDataFetchers.users)
-            .dataFetcher("projects", queryDataFetchers.projects).dataFetcher("project", queryDataFetchers.project))
-        .type(newTypeWiring("Mutation").dataFetcher("changeProjectTitle", mutationFetchers.changeProjectTitle)
+    RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring() //
+        .type(newTypeWiring("Query") //
+            .dataFetcher("users", queryDataFetchers.users) //
+            .dataFetcher("user", queryDataFetchers.user) //
+            .dataFetcher("projects", queryDataFetchers.projects) //
+            .dataFetcher("project", queryDataFetchers.project)) //
+        .type(newTypeWiring("Mutation") //
+            .dataFetcher("updateTaskState", mutationFetchers.updateTaskState) //
             .dataFetcher("addTask", mutationFetchers.addTask))
-        .type(newTypeWiring("Project")
-//                .dataFetcher("tasks", projectDataFetchers.tasks)
-            .dataFetcher("task", projectDataFetchers.task).dataFetcher("owser", projectDataFetchers.owner))
-        .type(newTypeWiring("Task").dataFetcher("assignee", taskFetchers.assignee)).build();
+        .type(newTypeWiring("Project") //
+            .dataFetcher("task", projectDataFetchers.task) //
+            .dataFetcher("owner", projectDataFetchers.owner))
+        .type(newTypeWiring("Task") //
+            .dataFetcher("assignee", taskFetchers.assignee)) //
+        .build();
 
     SchemaGenerator schemaGenerator = new SchemaGenerator();
     return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
