@@ -1,0 +1,24 @@
+.TaskListPage {
+  header {
+    margin-bottom: 1rem;
+
+    h1 {
+      margin-left: 3rem;
+    }
+
+    a {
+      color: var(--color-text);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .ButtonBar {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 3.5rem;
+  }
+}

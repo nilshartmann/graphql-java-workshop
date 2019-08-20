@@ -1,0 +1,155 @@
+:root {
+  --color-background: #ecf2f6;
+  --color-background-2: #f4f7fb;
+  --color-text: #3e475a;
+  --color-text-dim: #888b90;
+  --color-main: #2675be;
+  --color-white: #ffffff;
+
+  --font-text: Roboto, Arial, sans-serif;
+  --font-medium: 500;
+}
+
+:global {
+  body,
+  html {
+    font-family: var(--font-text);
+    color: var(--color-text);
+    background-color: white;
+    font-size: 14px;
+    height: 100%;
+  }
+
+  button {
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  #root {
+    height: 100%;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: var(--font-medium);
+  }
+
+  table {
+    width: 100%;
+    filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.161));
+    border-spacing: 0;
+    margin-bottom: 2rem;
+
+    td {
+      line-height: 1;
+    }
+
+    thead {
+      tr {
+        height: 4rem;
+        background-color: var(--color-background-2);
+
+        th {
+          padding-left: 3rem;
+          text-transform: uppercase;
+          font-weight: var(--font-medium);
+
+          // https://jsfiddle.net/zinoui/3LfE2/
+          &:first-child {
+            border-radius: 10px 0 0 0;
+          }
+
+          &:last-child {
+            border-radius: 0 10px 0 0;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        height: 4rem;
+        background-color: var(--color-background-2);
+
+        &:nth-child(odd) {
+          background-color: var(--color-white);
+        }
+
+        &:last-child {
+          td:first-child {
+            border-radius: 0 0 0 10px;
+          }
+
+          td:last-child {
+            border-radius: 0 0 10px 0;
+          }
+        }
+      }
+
+      td {
+        padding-left: 3rem;
+      }
+    }
+  }
+}
+
+.ProjectApp {
+  background-color: var(--color-background);
+  height: 100%;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+
+  .Header,
+  .Footer {
+    background: linear-gradient(to bottom, var(--color-main), #4b87be);
+    color: var(--color-white);
+    height: 4rem;
+    font-size: 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    a {
+      color: var(--color-white);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .Header {
+    margin-bottom: 3rem;
+    padding-left: 4rem;
+  }
+
+  .Footer {
+    font-size: 1rem;
+    height: 2rem;
+    margin-top: 2rem;
+
+    align-items: center;
+  }
+
+  main {
+    padding-left: 4rem;
+    padding-right: 4rem;
+
+    overflow-y: scroll;
+  }
+}

@@ -1,0 +1,18 @@
+.TaskPage {
+  header {
+    margin-bottom: 1rem;
+
+    a {
+      color: var(--color-text);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.TaskStateCardboard {
+  margin-bottom: 3rem;
+}
