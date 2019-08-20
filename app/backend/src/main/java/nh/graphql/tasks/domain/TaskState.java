@@ -5,9 +5,9 @@ package nh.graphql.tasks.domain;
  */
 public enum TaskState {
 
-	NEW,
+  NEW,
 
-	RUNNING,
+  RUNNING,
 
-    FINISHED,
+  FINISHED,
 }

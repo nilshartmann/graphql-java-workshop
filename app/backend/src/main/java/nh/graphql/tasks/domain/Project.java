@@ -1,9 +1,22 @@
 package nh.graphql.tasks.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
@@ -87,7 +100,7 @@ public class Project {
   public Long getId() {
     return id;
   }
-  
+
   public String getOwnerId() {
     return ownerId;
   }

@@ -11,10 +11,10 @@ import nh.graphql.tasks.domain.user.UserService;
 
 @Service
 public class TaskFetchers {
-  
+
   @Autowired
   private UserService userService;
-  
+
   DataFetcher<User> assignee = new DataFetcher<>() {
     @Override
     public User get(DataFetchingEnvironment environment) throws Exception {

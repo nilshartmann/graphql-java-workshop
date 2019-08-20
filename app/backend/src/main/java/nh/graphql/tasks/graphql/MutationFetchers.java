@@ -1,80 +1,78 @@
 package nh.graphql.tasks.graphql;
 
-import graphql.schema.DataFetcher;
-import graphql.schema.DataFetchingEnvironment;
-import nh.graphql.tasks.domain.Project;
-import nh.graphql.tasks.domain.ProjectRepository;
-import nh.graphql.tasks.domain.Task;
-import nh.graphql.tasks.domain.user.User;
-import nh.graphql.tasks.domain.user.UserService;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Map;
+import graphql.schema.DataFetcher;
+import graphql.schema.DataFetchingEnvironment;
+import nh.graphql.tasks.domain.Project;
+import nh.graphql.tasks.domain.ProjectRepository;
+import nh.graphql.tasks.domain.Task;
+import nh.graphql.tasks.domain.user.UserService;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
  */
 @Component
 public class MutationFetchers {
-    private final static Logger logger = LoggerFactory.getLogger(MutationFetchers.class);
+  private final static Logger logger = LoggerFactory.getLogger(MutationFetchers.class);
 
-    @Autowired
-    private ProjectRepository projectRepository;
-    
-    @Autowired
-    private UserService userService;
+  @Autowired
+  private ProjectRepository projectRepository;
 
-    DataFetcher changeProjectTitle = new DataFetcher() {
-        @Override
-        public Object get(DataFetchingEnvironment environment) throws Exception {
-            String projectId = environment.getArgument("id");
-            String newTitle = environment.getArgument("newTitle");
+  @Autowired
+  private UserService userService;
 
-            logger.info("Set title to '{}' for project '{}'", newTitle, projectId);
+  DataFetcher changeProjectTitle = new DataFetcher() {
+    @Override
+    public Object get(DataFetchingEnvironment environment) throws Exception {
+      String projectId = environment.getArgument("id");
+      String newTitle = environment.getArgument("newTitle");
 
-            Project p = projectRepository.findById(Long.parseLong(projectId)).orElse(null);
-            if (p == null) {
-                logger.warn("Project not found");
-                return null;
-            }
+      logger.info("Set title to '{}' for project '{}'", newTitle, projectId);
 
-            p.setTitle(newTitle);
-            projectRepository.save(p);
+      Project p = projectRepository.findById(Long.parseLong(projectId)).orElse(null);
+      if (p == null) {
+        logger.warn("Project not found");
+        return null;
+      }
 
-            return p;
-        }
-    };
+      p.setTitle(newTitle);
+      projectRepository.save(p);
 
-    DataFetcher addTask = new DataFetcher() {
-        @Override
-        public Object get(DataFetchingEnvironment environment) throws Exception {
-            long projectId = Long.parseLong(environment.getArgument("projectId"));
-            Map<String, String> input = environment.getArgument("input");
+      return p;
+    }
+  };
 
-            String title = input.get("title");
-            String description = input.get("description");
-            DateTimeFormatter formatter = DateTimeFormatter
-                .ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS[xxx][xx][X]");
-            LocalDateTime toBeFinishedAt = LocalDateTime.parse(input.get("toBeFinishedAt"), formatter);
-            String assigneeId = input.get("assigneeId");
+  DataFetcher addTask = new DataFetcher() {
+    @Override
+    public Object get(DataFetchingEnvironment environment) throws Exception {
+      long projectId = Long.parseLong(environment.getArgument("projectId"));
+      Map<String, String> input = environment.getArgument("input");
 
-            Project project = projectRepository.findById(projectId).orElseThrow();
-            
-            // check userService to make sure user with given assigneeId exists
-            userService.getUser(assigneeId).orElseThrow();
+      String title = input.get("title");
+      String description = input.get("description");
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS[xxx][xx][X]");
+      LocalDateTime toBeFinishedAt = LocalDateTime.parse(input.get("toBeFinishedAt"), formatter);
+      String assigneeId = input.get("assigneeId");
 
-            Task task = new Task(assigneeId, title, description, toBeFinishedAt);
-            project.addTask(task);
+      Project project = projectRepository.findById(projectId).orElseThrow();
 
-            projectRepository.save(project);
+      // check userService to make sure user with given assigneeId exists
+      userService.getUser(assigneeId).orElseThrow();
 
-            return task;
-        }
-    };
+      Task task = new Task(assigneeId, title, description, toBeFinishedAt);
+      project.addTask(task);
+
+      projectRepository.save(project);
+
+      return task;
+    }
+  };
 }

@@ -12,31 +12,32 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class TasksApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(TasksApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(TasksApplication.class, args);
+  }
 
-    @Bean
-    public CommandLineRunner importInitialData(Importer importer) {
-        return args -> importer.add();
-    }
+  @Bean
+  public CommandLineRunner importInitialData(Importer importer) {
+    return args -> importer.add();
+  }
 
-    @Bean
-    WebMvcConfigurer webConfig() {
-        return new WebMvcConfigurer() {
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowCredentials(true);
-            }
-        };
-    }
-    
-    /**
-     * RestTemplate needed for accessing the remote USerService
-     * @param builder
-     * @return
-     */
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-      return builder.build();
-    }
+  @Bean
+  WebMvcConfigurer webConfig() {
+    return new WebMvcConfigurer() {
+      public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowCredentials(true);
+      }
+    };
+  }
+
+  /**
+   * RestTemplate needed for accessing the remote USerService
+   * 
+   * @param builder
+   * @return
+   */
+  @Bean
+  public RestTemplate restTemplate(RestTemplateBuilder builder) {
+    return builder.build();
+  }
 }

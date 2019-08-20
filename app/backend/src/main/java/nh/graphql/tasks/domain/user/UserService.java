@@ -32,7 +32,7 @@ public class UserService {
   public Optional<User> getUser(String userId) {
     logger.info("READING USER WITH ID '{}' FROM '{}'", userId, this.userServiceUrl);
     User user = restTemplate.getForObject(this.userServiceUrl + "/{userId}", User.class, userId);
-    
+
     logger.info("USER {}", user);
 
     return Optional.of(user);
