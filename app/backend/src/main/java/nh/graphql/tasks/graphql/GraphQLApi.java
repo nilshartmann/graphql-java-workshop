@@ -31,6 +31,8 @@ public class GraphQLApi {
     @Autowired
     private ProjectDataFetchers projectDataFetchers;
     @Autowired
+    private TaskFetchers taskFetchers;
+    @Autowired
     private MutationFetchers mutationFetchers;
 
 
@@ -53,9 +55,12 @@ public class GraphQLApi {
                 .dataFetcher("addTask", mutationFetchers.addTask)
             )
             .type(newTypeWiring("Project")
-                .dataFetcher("tasks", projectDataFetchers.tasks)
+//                .dataFetcher("tasks", projectDataFetchers.tasks)
                 .dataFetcher("task", projectDataFetchers.task)
+                .dataFetcher("owser", projectDataFetchers.owner)
             )
+            .type(newTypeWiring("Task")
+                .dataFetcher("assignee", taskFetchers.assignee))
             .build();
 
         SchemaGenerator schemaGenerator = new SchemaGenerator();

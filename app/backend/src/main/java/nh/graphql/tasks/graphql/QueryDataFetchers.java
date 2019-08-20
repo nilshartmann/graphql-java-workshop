@@ -2,14 +2,14 @@ package nh.graphql.tasks.graphql;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import nh.graphql.tasks.ProjectRepository;
 import nh.graphql.tasks.domain.Project;
-import nh.graphql.tasks.domain.User;
-import nh.graphql.tasks.domain.UserRepository;
+import nh.graphql.tasks.domain.ProjectRepository;
+import nh.graphql.tasks.domain.user.User;
+import nh.graphql.tasks.domain.user.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,19 +19,19 @@ import java.util.Optional;
 public class QueryDataFetchers {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private ProjectRepository projectRepository;
 
-    DataFetcher users = new DataFetcher<Iterable<User>>() {
+    DataFetcher<Iterable<User>> users = new DataFetcher<>() {
         @Override
         public Iterable<User> get(DataFetchingEnvironment environment)  {
-            return userRepository.findAll();
+            return userService.getAllUsers();
         }
     };
 
-    DataFetcher project = new DataFetcher<Optional<Project>>() {
+    DataFetcher<Optional<Project>> project = new DataFetcher<>() {
         @Override
         public Optional<Project> get(DataFetchingEnvironment environment)  {
             long id = Long.parseLong(environment.getArgument("id"));
@@ -39,9 +39,9 @@ public class QueryDataFetchers {
         }
     };
 
-    DataFetcher projects = new DataFetcher() {
+    DataFetcher<Iterable<Project>> projects = new DataFetcher<>() {
         @Override
-        public Object get(DataFetchingEnvironment environment) throws Exception {
+        public Iterable<Project> get(DataFetchingEnvironment environment) throws Exception {
             return projectRepository.findAll();
         }
     };

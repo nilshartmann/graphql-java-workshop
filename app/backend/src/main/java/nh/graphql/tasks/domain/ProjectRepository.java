@@ -1,6 +1,5 @@
-package nh.graphql.tasks;
+package nh.graphql.tasks.domain;
 
-import nh.graphql.tasks.domain.Project;
 import org.springframework.data.repository.CrudRepository;
 
 /**

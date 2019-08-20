@@ -17,14 +17,12 @@ public class Task {
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "project_id")
-    private Project project;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "project_id")
+//    private Project project;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assignee_id", nullable = false)
-    private User assignee;
+    private String assigneeId;
 
     @NotNull
     @Column(name = "title", nullable = false)
@@ -45,24 +43,19 @@ public class Task {
     protected Task() {
     }
 
-    public Task(Project project, User assignee, String title, String description, LocalDateTime toBeFinishedAt) {
-        this(project, assignee, title, description, TaskState.NEW, toBeFinishedAt);
+    public Task(String assigneeId, String title, String description, LocalDateTime toBeFinishedAt) {
+        this(assigneeId, title, description, TaskState.NEW, toBeFinishedAt);
     }
 
     /**
      * FOR TEST/IMPORT ONLY
      */
-    public Task(Project project, User assignee, String title, String description, TaskState state, LocalDateTime toBeFinishedAt) {
-        this.project = project;
-        this.assignee = assignee;
+    public Task(String assigneeId, String title, String description, TaskState state, LocalDateTime toBeFinishedAt) {
+        this.assigneeId = assigneeId;
         this.toBeFinishedAt = toBeFinishedAt;
         this.title = title;
         this.description = description;
         this.state = state;
-    }
-
-    public Project getProject() {
-        return project;
     }
 
     public String getTitle() {
@@ -95,5 +88,9 @@ public class Task {
 
     public void setToBeFinishedAt(LocalDateTime toBeFinishedAt) {
         this.toBeFinishedAt = toBeFinishedAt;
+    }
+    
+    public String getAssigneeId() {
+      return assigneeId;
     }
 }

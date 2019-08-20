@@ -45,7 +45,7 @@ public class UserService {
     int usersByIdCounter = this.usersByIdCounter.incrementAndGet();
     logger.info("READING USER WITH ID '{}'' (REQUEST-ID: {}})", userId, usersByIdCounter);
 
-    return allUsers.stream().filter(u -> userId.equals(u.getId())).findFirst().orElseThrow(
+    return allUsers.stream().filter(u -> userId.equals(u.getId())).map(user -> mapUserToDtoWithRequestId(user, "users_" + usersByIdCounter)).findFirst().orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("User '%s' not found", userId)));
   }
 
