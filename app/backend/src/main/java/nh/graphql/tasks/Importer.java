@@ -59,24 +59,7 @@ public class Importer {
   }
 
   @Transactional
-  public void reset() {
-    projectRepository.deleteAll();
-    categoryRepository.deleteAll();
-
-    add();
-  }
-
-  @Transactional
   public void add() {
-
-//        User "U1" = userRepository.save(new User("nils", "Nils Hartmann"));
-//        User "U2" = userRepository.save(new User("susi", "Susi Mueller"));
-//        User "U3" = userRepository.save(new User("klaus", "Klaus Schneider"));
-//        User "U4" = userRepository.save(new User("sue", "Sue Taylor"));
-//        User "U5" = userRepository.save(new User("lauren", "Lauren Jones"));
-//        User "U6" = userRepository.save(new User("olivia", "Olivia Smith"));
-//        User "U7" = userRepository.save(new User("cathy", "Cathy Brown"));
-//        User "U8" = userRepository.save(new User("maja", "Maja Walsh"));
 
     Category c1 = categoryRepository.save(new Category("Private"));
     Category c2 = categoryRepository.save(new Category("Hobby"));

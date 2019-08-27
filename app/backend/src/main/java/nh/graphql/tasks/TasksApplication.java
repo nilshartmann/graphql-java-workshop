@@ -32,17 +32,10 @@ public class TasksApplication {
     return args -> {
       logger.info("====== IMPORTING DATA ======= ");
       importer.add();
-
-      logger.info("====== START 'PLAIN' LISTENER ======= ");
-      taskSubscriber.subscribe();
-
-      logger.info("====== START 'GRAPHQL' LISTENER ======= ");
-      graphQLTaskSubscriber.executeAndSubscribe();
-
+      logger.info("====== SERVER RUNNING ======= ");
     };
 
   }
-//
 //  /*
 //   * Make sure Hibernate Sessions remains open for the whole request - We need
 //   * this to lazy load referenced objects (e.g. project -> tasks, project ->

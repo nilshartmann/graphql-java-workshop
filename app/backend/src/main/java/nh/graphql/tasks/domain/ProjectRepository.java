@@ -30,6 +30,7 @@ public class ProjectRepository {
   }
 
   public Optional<Project> findById(long id, boolean withCategory, boolean withTasks) {
+    logger.info("FIND PROJECT BY ID, withCategory: {}, withTasks: {}", withCategory, withTasks);
     EntityGraph<Project> entityGraph = buildFetchHints(withCategory, withTasks);
 
     Map<String, Object> hints = null;
@@ -43,6 +44,8 @@ public class ProjectRepository {
   }
 
   public Iterable<Project> findAll(boolean withCategory, boolean withTasks) {
+    logger.info("FIND ALL PROJECTS, withCategory: {}, withTasks: {}", withCategory, withTasks);
+
     EntityGraph<Project> entityGraph = buildFetchHints(withCategory, withTasks);
     TypedQuery<Project> query = em.createQuery("SELECT p FROM Project p ORDER BY p.id", Project.class);
     if (entityGraph != null) {
@@ -51,12 +54,8 @@ public class ProjectRepository {
     return query.getResultList();
   }
 
-  public void deleteAll() {
-    em.createQuery("DELETE FROM projects").executeUpdate();
-  }
-
   private EntityGraph<Project> buildFetchHints(boolean withCategory, boolean withTasks) {
-    logger.info("withCategory {}, withTasks {}", withCategory, withTasks);
+    logger.trace("withCategory {}, withTasks {}", withCategory, withTasks);
     if (!withCategory && !withTasks) {
       return null;
     }

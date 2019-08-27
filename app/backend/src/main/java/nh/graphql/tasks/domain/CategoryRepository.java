@@ -18,9 +18,4 @@ public class CategoryRepository {
     em.persist(category);
     return category;
   }
-
-  public void deleteAll() {
-    em.createQuery("DELETE FROM categories").executeUpdate();
-  }
-
 }
