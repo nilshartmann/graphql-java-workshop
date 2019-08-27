@@ -26,7 +26,7 @@ public class TaskService {
   @Transactional
   public Task addTask(Long projectId, String assigneeId, String title, String description,
       LocalDateTime toBeFinishedAt) {
-    Project project = projectRepository.findById(projectId).orElseThrow();
+    Project project = projectRepository.findById(projectId, false, true).orElseThrow();
 
     // check userService to make sure user with given assigneeId exists
     userService.getUser(assigneeId).orElseThrow();

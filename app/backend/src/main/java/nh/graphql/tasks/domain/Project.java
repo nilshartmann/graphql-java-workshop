@@ -40,7 +40,7 @@ public class Project {
   private String description;
 
   // TODO: should be LAZY => BUT: SESSION ALREADY CLOSED
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @OrderBy("id")
   private List<Task> tasks = new LinkedList<>();
 
