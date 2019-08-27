@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql;
+package nh.graphql.tasks.graphql.fetcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class TaskFetchers {
   @Autowired
   private UserService userService;
 
-  DataFetcher<User> assignee = new DataFetcher<>() {
+  public DataFetcher<User> assignee = new DataFetcher<>() {
     @Override
     public User get(DataFetchingEnvironment environment) throws Exception {
       Task source = environment.getSource();

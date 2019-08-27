@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql;
+package nh.graphql.tasks.graphql.fetcher;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)

@@ -19,6 +19,11 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
+import nh.graphql.tasks.graphql.fetcher.MutationFetchers;
+import nh.graphql.tasks.graphql.fetcher.ProjectDataFetchers;
+import nh.graphql.tasks.graphql.fetcher.QueryDataFetchers;
+import nh.graphql.tasks.graphql.fetcher.SubscriptionFetchers;
+import nh.graphql.tasks.graphql.fetcher.TaskFetchers;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)

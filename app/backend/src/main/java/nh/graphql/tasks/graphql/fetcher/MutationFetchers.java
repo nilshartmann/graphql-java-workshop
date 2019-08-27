@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql;
+package nh.graphql.tasks.graphql.fetcher;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +27,7 @@ public class MutationFetchers {
   @Autowired
   private TaskService taskService;
 
-  DataFetcher<Task> addTask = new DataFetcher<>() {
+  public DataFetcher<Task> addTask = new DataFetcher<>() {
     @Override
     public Task get(DataFetchingEnvironment environment) throws Exception {
       long projectId = Long.parseLong(environment.getArgument("projectId"));
@@ -47,7 +47,7 @@ public class MutationFetchers {
     }
   };
 
-  DataFetcher<Task> updateTaskState = new DataFetcher<Task>() {
+  public DataFetcher<Task> updateTaskState = new DataFetcher<Task>() {
     @Override
     public Task get(DataFetchingEnvironment environment) throws Exception {
       long taskId = Long.parseLong(environment.getArgument("taskId"));

@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql;
+package nh.graphql.tasks.graphql.fetcher;
 
 import java.util.Optional;
 
@@ -24,14 +24,14 @@ public class QueryDataFetchers {
   @Autowired
   private ProjectRepository projectRepository;
 
-  DataFetcher<Iterable<User>> users = new DataFetcher<>() {
+  public DataFetcher<Iterable<User>> users = new DataFetcher<>() {
     @Override
     public Iterable<User> get(DataFetchingEnvironment environment) {
       return userService.getAllUsers();
     }
   };
 
-  DataFetcher<Optional<User>> user = new DataFetcher<>() {
+  public DataFetcher<Optional<User>> user = new DataFetcher<>() {
     @Override
     public Optional<User> get(DataFetchingEnvironment environment) {
       String userId = environment.getArgument("id");
@@ -39,7 +39,7 @@ public class QueryDataFetchers {
     }
   };
 
-  DataFetcher<Optional<Project>> project = new DataFetcher<>() {
+  public DataFetcher<Optional<Project>> project = new DataFetcher<>() {
     @Override
     public Optional<Project> get(DataFetchingEnvironment environment) {
       long id = Long.parseLong(environment.getArgument("id"));
@@ -47,7 +47,7 @@ public class QueryDataFetchers {
     }
   };
 
-  DataFetcher<Iterable<Project>> projects = new DataFetcher<>() {
+  public DataFetcher<Iterable<Project>> projects = new DataFetcher<>() {
     @Override
     public Iterable<Project> get(DataFetchingEnvironment environment) throws Exception {
       return projectRepository.findAll(isCategorySelected(environment), isTasksSelected(environment));

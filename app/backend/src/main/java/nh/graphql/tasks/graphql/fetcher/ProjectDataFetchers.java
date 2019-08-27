@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql;
+package nh.graphql.tasks.graphql.fetcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class ProjectDataFetchers {
   @Autowired
   private UserService userService;
 
-  DataFetcher<Task> task = new DataFetcher<>() {
+  public DataFetcher<Task> task = new DataFetcher<>() {
     @Override
     public Task get(DataFetchingEnvironment environment) throws Exception {
       long id = Long.parseLong(environment.getArgument("id"));
@@ -31,7 +31,7 @@ public class ProjectDataFetchers {
     }
   };
 
-  DataFetcher<User> owner = new DataFetcher<>() {
+  public DataFetcher<User> owner = new DataFetcher<>() {
     @Override
     public User get(DataFetchingEnvironment environment) throws Exception {
       Project project = environment.getSource();
