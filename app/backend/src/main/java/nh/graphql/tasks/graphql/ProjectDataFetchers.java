@@ -23,28 +23,7 @@ public class ProjectDataFetchers {
   @Autowired
   private UserService userService;
 
-//    DataFetcher tasks = new DataFetcher() {
-//        @Override
-//        public TaskConnection get(DataFetchingEnvironment environment) throws Exception {
-//            Project p = environment.getSource();
-//
-//            int page = environment.containsArgument("page") ? environment.getArgument("page") : -1;
-//            int pageSize = environment.containsArgument("pageSize") ? environment.getArgument("pageSize") : 6;
-//
-//            PageRequest pageRequest = page == -1 ? null : PageRequest.of(page, pageSize);
-//            Page<Task> taskPage = taskRepository.findByProject(p, pageRequest);
-//
-//            PageResult pageResult = new PageResult(
-//                taskPage.getNumber(),
-//                taskPage.getTotalElements(),
-//                taskPage.getTotalPages(),
-//                taskPage.hasNext(), taskPage.hasPrevious());
-//
-//            return new TaskConnection(pageResult, taskPage.getContent());
-//        }
-//    };
-
-  DataFetcher task = new DataFetcher() {
+  DataFetcher<Task> task = new DataFetcher<>() {
     @Override
     public Task get(DataFetchingEnvironment environment) throws Exception {
       long id = Long.parseLong(environment.getArgument("id"));
@@ -52,7 +31,7 @@ public class ProjectDataFetchers {
     }
   };
 
-  DataFetcher owner = new DataFetcher<User>() {
+  DataFetcher<User> owner = new DataFetcher<>() {
     @Override
     public User get(DataFetchingEnvironment environment) throws Exception {
       Project project = environment.getSource();

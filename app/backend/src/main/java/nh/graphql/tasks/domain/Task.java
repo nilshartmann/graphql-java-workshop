@@ -104,4 +104,11 @@ public class Task {
   public String getAssigneeId() {
     return assigneeId;
   }
+
+  @Override
+  public String toString() {
+    return "Task [id=" + id + ", assigneeId=" + assigneeId + ", title=" + title + ", description=" + description
+        + ", state=" + state + ", toBeFinishedAt=" + toBeFinishedAt + "]";
+  }
+
 }

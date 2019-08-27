@@ -59,6 +59,14 @@ public class Importer {
   }
 
   @Transactional
+  public void reset() {
+    projectRepository.deleteAll();
+    categoryRepository.deleteAll();
+
+    add();
+  }
+
+  @Transactional
   public void add() {
 
 //        User "U1" = userRepository.save(new User("nils", "Nils Hartmann"));
@@ -85,7 +93,7 @@ public class Importer {
     Project p6 = projectRepository.save(
         new Project("U4", c3, "Implement GraphQL Java App", "Implement a small application to demonstrate GraphQL"));
 
-    Task t1 = new Task("U1", "Create a draft story", rd(), TaskState.RUNNING, dt("05.04.2019"));
+    Task t1 = new Task("U1", "Create a draft story", rd(), TaskState.RUNNING, dt(""));
     Task t2 = new Task("U2", "Finish Example App", rd(), dt(""));
     Task t3 = new Task("U1", "Design Slides", rd(), dt(""));
     p1.addTasks(t1, t2, t3);

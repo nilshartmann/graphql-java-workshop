@@ -23,5 +23,4 @@ public class GraphQLServlet extends GraphQLHttpServlet {
   protected GraphQLConfiguration getConfiguration() {
     return GraphQLConfiguration.with(schema).build();
   }
-
 }

@@ -1,5 +1,7 @@
 package nh.graphql.tasks;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,13 +16,27 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ServletComponentScan
 public class TasksApplication {
 
+  private static final Logger logger = LoggerFactory.getLogger(TasksApplication.class);
+
   public static void main(String[] args) {
     SpringApplication.run(TasksApplication.class, args);
   }
 
   @Bean
-  public CommandLineRunner importInitialData(Importer importer) {
-    return args -> importer.add();
+  public CommandLineRunner importInitialData(Importer importer, RxStreamsTaskSubscriber taskSubscriber,
+      GraphQLTaskSubscriber graphQLTaskSubscriber) {
+    return args -> {
+      logger.info("====== IMPORTING DATA ======= ");
+      importer.add();
+
+      logger.info("====== START 'PLAIN' LISTENER ======= ");
+      taskSubscriber.subscribe();
+
+      logger.info("====== START 'GRAPHQL' LISTENER ======= ");
+      graphQLTaskSubscriber.executeAndSubscribe();
+
+    };
+
   }
 
   @Bean
