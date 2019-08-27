@@ -75,6 +75,13 @@ public class TasksApplicationTests {
     }
   }
 
+  @Test
+  public void projectsPageQuery() {
+    String query = loadGraphQL("ProjectsPageQuery");
+    GraphQLTestResponse graphQLTestResponse = execute(query);
+    assertThat(graphQLTestResponse.getInt("$.data.projects.length()")).isEqualTo(6);
+  }
+
   private String loadGraphQL(String name) {
     String resourceName = getClass().getPackageName().replace('.', '/') + "/" + name + ".graphQL";
     Resource resource = resourceLoader.getResource("classpath:" + resourceName);
