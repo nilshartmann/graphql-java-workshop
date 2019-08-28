@@ -82,4 +82,13 @@ public class GraphQLApi {
     return GraphQL.newGraphQL(graphQLSchema).build();
   }
 
+//  @Bean
+//  public DataLoaderRegistry configureDataLoader(Optional<DataLoaderRegistry> dataLoaderRegistryCandidate) {
+//    final DataLoaderRegistry dataLoaderRegistry = dataLoaderRegistryCandidate.orElse(new DataLoaderRegistry());
+//    DataLoader userDataLoader = DataLoader.newDataLoader(ratingDataFetchers.userBatchLoader);
+//    dataLoaderRegistry.register("user", userDataLoader);
+//
+//    return dataLoaderRegistry;
+//  }
+
 }

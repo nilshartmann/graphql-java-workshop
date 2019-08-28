@@ -1,5 +1,6 @@
 package nh.graphql.tasks.graphql.fetcher;
 
+import org.dataloader.DataLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,19 @@ public class TaskFetchers {
   @Autowired
   private UserService userService;
 
-  public DataFetcher<User> assignee = new DataFetcher<>() {
+  public DataFetcher<Object> assignee = new DataFetcher<>() {
     @Override
-    public User get(DataFetchingEnvironment environment) throws Exception {
+    public Object get(DataFetchingEnvironment environment) throws Exception {
       Task source = environment.getSource();
-      return userService.getUser(source.getAssigneeId()).orElse(null);
+      String userId = source.getAssigneeId();
+      boolean useDataLoader = environment.getField().getDirective("useDataLoader") != null;
+
+      if (!useDataLoader) {
+        return userService.getUser(userId).orElse(null);
+      }
+
+      DataLoader<String, User> dataLoader = environment.getDataLoader("userDataLoader");
+      return dataLoader.load(userId);
     }
   };
 

@@ -22,12 +22,19 @@ import graphql.servlet.input.GraphQLInvocationInputFactory;
 public class GraphQLWebsocketConfiguration {
 
   @Bean
-  public ServerEndpointRegistration serverEndpointRegistration(GraphQLSchema schema) {
-    final DefaultGraphQLSchemaProvider schemaProvider = new DefaultGraphQLSchemaProvider(schema);
-    final GraphQLQueryInvoker queryInvoker = GraphQLQueryInvoker.newBuilder().build();
+  public ServerEndpointRegistration serverEndpointRegistration(GraphQLSchema schema,
+      ProjectGraphQLContextBuilder projectGraphQLContextBuilder) {
+    DefaultGraphQLSchemaProvider schemaProvider = new DefaultGraphQLSchemaProvider(schema);
+    GraphQLQueryInvoker queryInvoker = GraphQLQueryInvoker.newBuilder().build();
+    GraphQLInvocationInputFactory invocationInputFactory = GraphQLInvocationInputFactory.newBuilder(schemaProvider) //
+        .withGraphQLContextBuilder(projectGraphQLContextBuilder) //
+        .build();
 
-    final GraphQLWebsocketServlet websocketServlet = new GraphQLWebsocketServlet(queryInvoker,
-        GraphQLInvocationInputFactory.newBuilder(schemaProvider).build(), GraphQLObjectMapper.newBuilder().build());
+    // create servlet
+    final GraphQLWebsocketServlet websocketServlet = new GraphQLWebsocketServlet(queryInvoker, invocationInputFactory,
+        GraphQLObjectMapper.newBuilder().build());
+
+    //
     return new GraphQLWsServerEndpointRegistration("/subscriptions", websocketServlet);
   }
 

@@ -1,3 +1,9 @@
+# Can be added to 'user' fields to skip using
+# the DataLoader/Caching for user requests
+# (For testing/demo purposes only)
+directive @useDataLoader on FIELD | FRAGMENT_DEFINITION | FRAGMENT_SPREAD | INLINE_FRAGMENT | QUERY
+
+
 """
 A User describes an actor in the system
 """
