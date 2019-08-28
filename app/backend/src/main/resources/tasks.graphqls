@@ -1,7 +1,9 @@
-# Can be added to 'user' fields to skip using
+# Can be added to 'user' fields to enable using
 # the DataLoader/Caching for user requests
-# (For testing/demo purposes only)
+# (For testing/demo purposes only, irl you would probably would ALWAYS use the dataloader)
 directive @useDataLoader on FIELD | FRAGMENT_DEFINITION | FRAGMENT_SPREAD | INLINE_FRAGMENT | QUERY
+
+directive @useEntityGraph on FIELD | FRAGMENT_DEFINITION | FRAGMENT_SPREAD | INLINE_FRAGMENT | QUERY
 
 
 """

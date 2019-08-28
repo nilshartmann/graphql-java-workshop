@@ -9,6 +9,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -36,15 +37,16 @@ public class TasksApplication {
     };
 
   }
-//  /*
-//   * Make sure Hibernate Sessions remains open for the whole request - We need
-//   * this to lazy load referenced objects (e.g. project -> tasks, project ->
-//   * categories) - We will implement a better solution soon
-//   */
-//  @Bean
-//  public OpenEntityManagerInViewFilter openEntityManagerInViewFilter() {
-//    return new OpenEntityManagerInViewFilter();
-//  }
+
+  /*
+   * Make sure Hibernate Sessions remains open for the whole request - We need
+   * this to lazy load referenced objects (e.g. project -> tasks, project ->
+   * categories)
+   */
+  @Bean
+  public OpenEntityManagerInViewFilter openEntityManagerInViewFilter() {
+    return new OpenEntityManagerInViewFilter();
+  }
 
   @Bean
   WebMvcConfigurer webConfig() {
