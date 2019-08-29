@@ -55,7 +55,7 @@ public class QueryDataFetchers {
     }
   };
 
-  public DataFetcher<Optional<Project>> project = new DataFetcher<>() {
+  public DataFetcher<Optional<Project>> projectById = new DataFetcher<>() {
     @Override
     public Optional<Project> get(DataFetchingEnvironment environment) {
       long id = Long.parseLong(environment.getArgument("id"));

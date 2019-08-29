@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
@@ -27,10 +27,10 @@ import nh.graphql.tasks.graphql.fetcher.TaskFetchers;
  * @author Nils Hartmann (nils@nilshartmann.net)
  */
 
-@Component
-public class GraphQLApi {
+@Configuration
+public class GraphQLApiConfiguration {
 
-  private final static Logger logger = LoggerFactory.getLogger(GraphQLApi.class);
+  private final static Logger logger = LoggerFactory.getLogger(GraphQLApiConfiguration.class);
 
   @Autowired
   private QueryDataFetchers queryDataFetchers;
@@ -51,13 +51,20 @@ public class GraphQLApi {
     InputStream inputStream = getClass().getResourceAsStream("/tasks.graphqls");
     TypeDefinitionRegistry typeRegistry = schemaParser.parse(new InputStreamReader(inputStream));
 
+    RuntimeWiring runtimeWiring = setupWiring();
+
+    SchemaGenerator schemaGenerator = new SchemaGenerator();
+    return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
+  }
+
+  private RuntimeWiring setupWiring() {
     RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring() //
         .type(newTypeWiring("Query") //
             .dataFetcher("ping", queryDataFetchers.ping) //
             .dataFetcher("users", queryDataFetchers.users) //
             .dataFetcher("user", queryDataFetchers.user) //
             .dataFetcher("projects", queryDataFetchers.projects) //
-            .dataFetcher("project", queryDataFetchers.project)) //
+            .dataFetcher("project", queryDataFetchers.projectById)) //
         .type(newTypeWiring("Mutation") //
             .dataFetcher("updateTaskState", mutationFetchers.updateTaskState) //
             .dataFetcher("addTask", mutationFetchers.addTask))
@@ -70,22 +77,11 @@ public class GraphQLApi {
             .dataFetcher("assignee", taskFetchers.assignee)) //
         .build();
 
-    SchemaGenerator schemaGenerator = new SchemaGenerator();
-    return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
+    return runtimeWiring;
   }
 
   @Bean
   public GraphQL graphql(GraphQLSchema graphQLSchema) {
     return GraphQL.newGraphQL(graphQLSchema).build();
   }
-
-//  @Bean
-//  public DataLoaderRegistry configureDataLoader(Optional<DataLoaderRegistry> dataLoaderRegistryCandidate) {
-//    final DataLoaderRegistry dataLoaderRegistry = dataLoaderRegistryCandidate.orElse(new DataLoaderRegistry());
-//    DataLoader userDataLoader = DataLoader.newDataLoader(ratingDataFetchers.userBatchLoader);
-//    dataLoaderRegistry.register("user", userDataLoader);
-//
-//    return dataLoaderRegistry;
-//  }
-
 }
