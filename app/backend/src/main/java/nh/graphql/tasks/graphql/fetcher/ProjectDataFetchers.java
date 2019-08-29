@@ -1,5 +1,7 @@
 package nh.graphql.tasks.graphql.fetcher;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -68,5 +70,13 @@ public class ProjectDataFetchers {
       });
     }
   };
+
+  // graphql.schema.AsyncDataFetcher.async
+  public DataFetcher estimation = (env -> {
+    logger.info("Thread {} ", Thread.currentThread().getName());
+    Thread.sleep(500);
+    return "Thread " + Thread.currentThread().getName() + " finished @ "
+        + LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss.SSS"));
+  });
 
 }
