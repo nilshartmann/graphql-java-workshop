@@ -1,5 +1,7 @@
 package nh.graphql.tasks.graphql.fetcher;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,20 @@ public class QueryDataFetchers {
 
   @Autowired
   private ProjectRepository projectRepository;
+
+//  public DataFetcher<String> ping = env -> "Hello, World @ "
+//      + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
+
+  public DataFetcher<String> ping = new DataFetcher<>() {
+    @Override
+    public String get(DataFetchingEnvironment environment) {
+      String msg = environment.getArgument("msg");
+      if (msg == null) {
+        msg = "World";
+      }
+      return "Hello, " + msg + " @ " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
+    }
+  };
 
   public DataFetcher<Iterable<User>> users = new DataFetcher<>() {
     @Override

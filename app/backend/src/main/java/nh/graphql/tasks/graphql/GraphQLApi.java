@@ -4,8 +4,6 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,8 +53,7 @@ public class GraphQLApi {
 
     RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring() //
         .type(newTypeWiring("Query") //
-            .dataFetcher("ping",
-                env -> "Hello, World @ " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"))) //
+            .dataFetcher("ping", queryDataFetchers.ping) //
             .dataFetcher("users", queryDataFetchers.users) //
             .dataFetcher("user", queryDataFetchers.user) //
             .dataFetcher("projects", queryDataFetchers.projects) //
