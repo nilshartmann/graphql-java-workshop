@@ -2,3 +2,5 @@ node_modules/
 npm-debug.log
 yarn-error.log
 db.sqlite
+.sts-workspace-workspace
+.sts-workspace-backend
