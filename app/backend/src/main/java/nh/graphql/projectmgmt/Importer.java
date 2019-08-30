@@ -1,4 +1,4 @@
-package nh.graphql.tasks;
+package nh.graphql.projectmgmt;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thedeanda.lorem.Lorem;
 import com.thedeanda.lorem.LoremIpsum;
 
-import nh.graphql.tasks.domain.Category;
-import nh.graphql.tasks.domain.CategoryRepository;
-import nh.graphql.tasks.domain.Project;
-import nh.graphql.tasks.domain.ProjectRepository;
-import nh.graphql.tasks.domain.Task;
-import nh.graphql.tasks.domain.TaskState;
+import nh.graphql.projectmgmt.domain.Category;
+import nh.graphql.projectmgmt.domain.CategoryRepository;
+import nh.graphql.projectmgmt.domain.Project;
+import nh.graphql.projectmgmt.domain.ProjectRepository;
+import nh.graphql.projectmgmt.domain.Task;
+import nh.graphql.projectmgmt.domain.TaskState;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)

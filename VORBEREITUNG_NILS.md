@@ -1,25 +1,60 @@
 # VORBEREITUNG VOR DEM WORKSHOP
 
 ## Starten Anwendung und Frontend
-1. Starten
-- UserService über Gradle
-- Den Rest über Eclipse
-- FE über Command line
 
-2. Lokale IP Adresse ermitteln und aufschreiben
-3. Playground öffnen und NewTask Mutation starten (für Übung 1)
+### 1. UserService
+
+```
+cd /Users/nils/develop/javascript/graphql-java-workshop/app/userservice
+./gradlew clean bootRun
+```
+
+### 2. Backend
+
+- Über Eclipse (SpringToolSuite 4)
+
+### 3. Frontend
+
+```
+cd /Users/nils/develop/javascript/graphql-java-workshop/app/frontend
+yarn start
+```
+
+### 4. ngrok
+
+```
+ngrok http 5000
+```
+
+### 5. Hostname aufschreiben
+
+### 6. Playground öffnen und NewTask Mutation in eigenem Tab starten (für Übung 1)
+
+```
+subscription {
+  newTask: onNewTask {
+    id
+    title
+    description
+    assignee {
+      login
+    }
+  }
+}
+```
 
 # QUERIES
 
 ## Datenbank Joins
+
 ### Nur Projekte, kein Join notwendig:
+
 ```
 query ProjectsOnly {projects { id }}
 ```
 
-
-
 ### Projekte und Category, Join notwendig, durch Lazy Loading x Queries
+
 ```
 query ProjectsAndCategory {
   projects {
@@ -30,7 +65,6 @@ query ProjectsAndCategory {
   }
 }
 ```
-
 
 ### Projekte und Task, Join notwendig, durch Lazy Loading x Queries
 
@@ -45,8 +79,8 @@ query ProjectsAndTasks {
 
 ```
 
-
 ### Projekte mit Tasks und Kategorien, Join notwendig, durch Lazy Loading x Queries
+
 ```
 query ProjectsAndTasksWithCategory {
   projects {
@@ -61,6 +95,7 @@ query ProjectsAndTasksWithCategory {
 ```
 
 ### Projekte mit Tasks und Kategorien, Join notwendig, durch Entity Graph nur 1 Query:
+
 ```
 query ProjectsAndTasksWithCategory {
   projects @useEntityGraph {
@@ -74,14 +109,13 @@ query ProjectsAndTasksWithCategory {
 }
 ```
 
-
 ## UserService / DataLoader
 
 Anzahl an UserService Requests:
 
 query ProjectsPageQuery {
-  projects {
-    id
+projects {
+id
 
     owner {
       id
@@ -92,5 +126,6 @@ query ProjectsPageQuery {
         name
       }
     }
-  }
+
+}
 }

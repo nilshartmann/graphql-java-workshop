@@ -1,4 +1,4 @@
-package nh.graphql.tasks;
+package nh.graphql.projectmgmt;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;

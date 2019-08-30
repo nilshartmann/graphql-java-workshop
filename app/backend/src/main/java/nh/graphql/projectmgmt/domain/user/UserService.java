@@ -1,4 +1,4 @@
-package nh.graphql.tasks.domain.user;
+package nh.graphql.projectmgmt.domain.user;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package nh.graphql.tasks.domain.user;
+package nh.graphql.projectmgmt.domain.user;
 
 public class User {
   private String id;

@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql.fetcher;
+package nh.graphql.projectmgmt.graphql.fetcher;
 
 import org.dataloader.DataLoader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import nh.graphql.tasks.domain.Task;
-import nh.graphql.tasks.domain.user.User;
-import nh.graphql.tasks.domain.user.UserService;
+import nh.graphql.projectmgmt.domain.Task;
+import nh.graphql.projectmgmt.domain.user.User;
+import nh.graphql.projectmgmt.domain.user.UserService;
 
 @Service
 public class TaskFetchers {

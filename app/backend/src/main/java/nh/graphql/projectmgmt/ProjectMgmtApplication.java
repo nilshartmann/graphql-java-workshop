@@ -1,4 +1,4 @@
-package nh.graphql.tasks;
+package nh.graphql.projectmgmt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +19,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @ServletComponentScan
-public class TasksApplication {
+public class ProjectMgmtApplication {
 
-  private static final Logger logger = LoggerFactory.getLogger(TasksApplication.class);
+  private static final Logger logger = LoggerFactory.getLogger(ProjectMgmtApplication.class);
 
   public static void main(String[] args) {
-    SpringApplication.run(TasksApplication.class, args);
+    SpringApplication.run(ProjectMgmtApplication.class, args);
   }
 
   @Bean

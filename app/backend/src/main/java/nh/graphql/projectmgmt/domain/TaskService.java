@@ -1,4 +1,4 @@
-package nh.graphql.tasks.domain;
+package nh.graphql.projectmgmt.domain;
 
 import java.time.LocalDateTime;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import nh.graphql.tasks.domain.user.UserService;
+import nh.graphql.projectmgmt.domain.user.UserService;
 
 @Service
 public class TaskService {

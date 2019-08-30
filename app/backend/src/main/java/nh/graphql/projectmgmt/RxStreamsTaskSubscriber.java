@@ -1,4 +1,4 @@
-package nh.graphql.tasks;
+package nh.graphql.projectmgmt;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import nh.graphql.tasks.domain.Task;
-import nh.graphql.tasks.domain.TaskPublisher;
+import nh.graphql.projectmgmt.domain.Task;
+import nh.graphql.projectmgmt.domain.TaskPublisher;
 
 @Component
 public class RxStreamsTaskSubscriber {

@@ -1,4 +1,4 @@
-package nh.graphql.tasks.domain;
+package nh.graphql.projectmgmt.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

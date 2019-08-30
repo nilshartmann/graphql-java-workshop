@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql.fetcher;
+package nh.graphql.projectmgmt.graphql.fetcher;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import nh.graphql.tasks.domain.Project;
-import nh.graphql.tasks.domain.Task;
-import nh.graphql.tasks.domain.TaskRepository;
-import nh.graphql.tasks.domain.user.User;
-import nh.graphql.tasks.domain.user.UserService;
+import nh.graphql.projectmgmt.domain.Project;
+import nh.graphql.projectmgmt.domain.Task;
+import nh.graphql.projectmgmt.domain.TaskRepository;
+import nh.graphql.projectmgmt.domain.user.User;
+import nh.graphql.projectmgmt.domain.user.UserService;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)

@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql.fetcher;
+package nh.graphql.projectmgmt.graphql.fetcher;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import nh.graphql.tasks.domain.Task;
-import nh.graphql.tasks.domain.TaskService;
-import nh.graphql.tasks.domain.TaskState;
+import nh.graphql.projectmgmt.domain.Task;
+import nh.graphql.projectmgmt.domain.TaskService;
+import nh.graphql.projectmgmt.domain.TaskState;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)

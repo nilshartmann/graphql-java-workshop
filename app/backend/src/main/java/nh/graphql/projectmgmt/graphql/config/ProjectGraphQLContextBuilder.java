@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql.config;
+package nh.graphql.projectmgmt.graphql.config;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import graphql.servlet.context.DefaultGraphQLContextBuilder;
 import graphql.servlet.context.GraphQLContext;
-import nh.graphql.tasks.graphql.fetcher.ProjectDataFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.ProjectDataFetchers;
 
 @Component
 public class ProjectGraphQLContextBuilder extends DefaultGraphQLContextBuilder {

@@ -1,4 +1,4 @@
-package nh.graphql.tasks.graphql;
+package nh.graphql.projectmgmt.graphql;
 
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 
@@ -17,11 +17,11 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import nh.graphql.tasks.graphql.fetcher.MutationFetchers;
-import nh.graphql.tasks.graphql.fetcher.ProjectDataFetchers;
-import nh.graphql.tasks.graphql.fetcher.QueryDataFetchers;
-import nh.graphql.tasks.graphql.fetcher.SubscriptionFetchers;
-import nh.graphql.tasks.graphql.fetcher.TaskFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.MutationFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.ProjectDataFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.QueryDataFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.SubscriptionFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.TaskFetchers;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
@@ -48,7 +48,7 @@ public class GraphQLApiConfiguration {
     logger.info("Building GraphQL Schema");
 
     SchemaParser schemaParser = new SchemaParser();
-    InputStream inputStream = getClass().getResourceAsStream("/tasks.graphqls");
+    InputStream inputStream = getClass().getResourceAsStream("/projectmgmt.graphqls");
     TypeDefinitionRegistry typeRegistry = schemaParser.parse(new InputStreamReader(inputStream));
 
     RuntimeWiring runtimeWiring = setupWiring();
