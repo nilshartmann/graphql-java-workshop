@@ -1,0 +1,14 @@
+mutation {
+  addTask(
+    projectId: 1
+    input: {
+      title: "New Task"
+      description: "New Description"
+      assigneeId: "U1"
+    }
+  ) {
+    title
+    description
+    toBeFinishedAt
+  }
+}
