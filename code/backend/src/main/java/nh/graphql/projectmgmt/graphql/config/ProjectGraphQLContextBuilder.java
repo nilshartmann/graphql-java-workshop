@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
 
-import org.dataloader.DataLoader;
 import org.dataloader.DataLoaderRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,7 +42,7 @@ public class ProjectGraphQLContextBuilder extends DefaultGraphQLContextBuilder {
 
   private void addDataLoaders(GraphQLContext context) {
     DataLoaderRegistry dataLoaderRegistry = context.getDataLoaderRegistry().orElseThrow();
-    dataLoaderRegistry.register("userDataLoader", DataLoader.newDataLoader(projectDataFetchers.userBatchLoader));
+    // TODO
   }
 
 }

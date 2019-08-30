@@ -59,25 +59,15 @@ public class QueryDataFetchers {
     @Override
     public Optional<Project> get(DataFetchingEnvironment environment) {
       long id = Long.parseLong(environment.getArgument("id"));
-      return projectRepository.findById(id, isCategorySelected(environment), isTasksSelected(environment));
+      return projectRepository.findById(id);
     }
   };
 
   public DataFetcher<Iterable<Project>> projects = new DataFetcher<>() {
     @Override
     public Iterable<Project> get(DataFetchingEnvironment environment) throws Exception {
-      return projectRepository.findAll(isCategorySelected(environment), isTasksSelected(environment));
+      return projectRepository.findAll();
     }
   };
-
-  private boolean isCategorySelected(DataFetchingEnvironment environment) {
-    boolean useEntityGraph = environment.getField().getDirective("useEntityGraph") != null;
-    return useEntityGraph && environment.getSelectionSet().contains("category");
-  }
-
-  private boolean isTasksSelected(DataFetchingEnvironment environment) {
-    boolean useEntityGraph = environment.getField().getDirective("useEntityGraph") != null;
-    return useEntityGraph && environment.getSelectionSet().contains("tasks");
-  }
 
 }
