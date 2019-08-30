@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    ".classpath": true,
+    ".gradle/": true,
+    ".project": true,
+    ".settings/": true,
+    "bin/": true,
+    "build/": true,
+    "gradle": true
+  }
+}
