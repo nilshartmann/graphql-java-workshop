@@ -1,20 +1,15 @@
 package nh.graphql.projectmgmt.graphql.fetcher;
 
 import org.dataloader.DataLoader;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Task;
 import nh.graphql.projectmgmt.domain.user.User;
 import nh.graphql.projectmgmt.domain.user.UserService;
+import nh.graphql.projectmgmt.graphql.config.ProjectMgmtGraphQLContext;
 
-@Service
 public class TaskFetchers {
-
-  @Autowired
-  private UserService userService;
 
   public DataFetcher<Object> assignee = new DataFetcher<>() {
     @Override
@@ -24,6 +19,8 @@ public class TaskFetchers {
       boolean useDataLoader = environment.getField().getDirective("useDataLoader") != null;
 
       if (!useDataLoader) {
+        ProjectMgmtGraphQLContext context = environment.getContext();
+        UserService userService = context.getUserService();
         return userService.getUser(userId).orElse(null);
       }
 

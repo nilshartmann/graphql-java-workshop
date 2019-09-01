@@ -4,30 +4,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Project;
-import nh.graphql.projectmgmt.domain.ProjectRepository;
 import nh.graphql.projectmgmt.domain.user.User;
-import nh.graphql.projectmgmt.domain.user.UserService;
+import nh.graphql.projectmgmt.graphql.config.ProjectMgmtGraphQLContext;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
  */
-@Component
 public class QueryDataFetchers {
-
-  @Autowired
-  private UserService userService;
-
-  @Autowired
-  private ProjectRepository projectRepository;
-
-//  public DataFetcher<String> ping = env -> "Hello, World @ "
-//      + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
 
   public DataFetcher<String> ping = new DataFetcher<>() {
     @Override
@@ -43,7 +29,8 @@ public class QueryDataFetchers {
   public DataFetcher<Iterable<User>> users = new DataFetcher<>() {
     @Override
     public Iterable<User> get(DataFetchingEnvironment environment) {
-      return userService.getAllUsers();
+      ProjectMgmtGraphQLContext context = environment.getContext();
+      return context.getUserService().getAllUsers();
     }
   };
 
@@ -51,22 +38,25 @@ public class QueryDataFetchers {
     @Override
     public Optional<User> get(DataFetchingEnvironment environment) {
       String userId = environment.getArgument("id");
-      return userService.getUser(userId);
+      ProjectMgmtGraphQLContext context = environment.getContext();
+      return context.getUserService().getUser(userId);
     }
   };
 
   public DataFetcher<Optional<Project>> projectById = new DataFetcher<>() {
     @Override
     public Optional<Project> get(DataFetchingEnvironment environment) {
+      ProjectMgmtGraphQLContext context = environment.getContext();
       long id = Long.parseLong(environment.getArgument("id"));
-      return projectRepository.findById(id, isCategorySelected(environment), isTasksSelected(environment));
+      return context.getProjectRepository().findById(id, isCategorySelected(environment), isTasksSelected(environment));
     }
   };
 
   public DataFetcher<Iterable<Project>> projects = new DataFetcher<>() {
     @Override
     public Iterable<Project> get(DataFetchingEnvironment environment) throws Exception {
-      return projectRepository.findAll(isCategorySelected(environment), isTasksSelected(environment));
+      ProjectMgmtGraphQLContext context = environment.getContext();
+      return context.getProjectRepository().findAll(isCategorySelected(environment), isTasksSelected(environment));
     }
   };
 

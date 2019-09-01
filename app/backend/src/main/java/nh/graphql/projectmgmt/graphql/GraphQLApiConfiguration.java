@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,17 +31,6 @@ public class GraphQLApiConfiguration {
 
   private final static Logger logger = LoggerFactory.getLogger(GraphQLApiConfiguration.class);
 
-  @Autowired
-  private QueryDataFetchers queryDataFetchers;
-  @Autowired
-  private ProjectDataFetchers projectDataFetchers;
-  @Autowired
-  private TaskFetchers taskFetchers;
-  @Autowired
-  private MutationFetchers mutationFetchers;
-  @Autowired
-  private SubscriptionFetchers subscriptionFetcher;
-
   @Bean
   public GraphQLSchema graphQLSchema() {
     logger.info("Building GraphQL Schema");
@@ -58,6 +46,13 @@ public class GraphQLApiConfiguration {
   }
 
   private RuntimeWiring setupWiring() {
+
+    QueryDataFetchers queryDataFetchers = new QueryDataFetchers();
+    ProjectDataFetchers projectDataFetchers = new ProjectDataFetchers();
+    TaskFetchers taskFetchers = new TaskFetchers();
+    MutationFetchers mutationFetchers = new MutationFetchers();
+    SubscriptionFetchers subscriptionFetcher = new SubscriptionFetchers();
+
     RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring() //
         .type(newTypeWiring("Query") //
             .dataFetcher("ping", queryDataFetchers.ping) //

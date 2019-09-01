@@ -27,8 +27,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import nh.graphql.projectmgmt.Importer;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ProjectMgmtApplicationTests {
@@ -82,6 +80,13 @@ public class ProjectMgmtApplicationTests {
     String query = loadGraphQL("ProjectsPageQuery");
     GraphQLTestResponse graphQLTestResponse = execute(query);
     assertThat(graphQLTestResponse.getInt("$.data.projects.length()")).isEqualTo(6);
+  }
+
+  @Test
+  public void allUsersQuery() {
+    String query = loadGraphQL("AllUsersQuery");
+    GraphQLTestResponse graphQLTestResponse = execute(query);
+    assertThat(graphQLTestResponse.getInt("$.data.users.length()")).isEqualTo(8);
   }
 
   private String loadGraphQL(String name) {
