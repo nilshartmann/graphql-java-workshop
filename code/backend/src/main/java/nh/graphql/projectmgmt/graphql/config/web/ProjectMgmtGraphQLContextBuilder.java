@@ -17,6 +17,7 @@ import nh.graphql.projectmgmt.domain.TaskRepository;
 import nh.graphql.projectmgmt.domain.TaskService;
 import nh.graphql.projectmgmt.domain.user.UserService;
 import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
+import nh.graphql.projectmgmt.graphql.fetcher.ProjectDataLoaders;
 
 @Component
 public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
@@ -33,6 +34,8 @@ public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
   private TaskPublisher taskPublisher;
 
   private InteralProjectMgmtGraphQLContext interalProjectMgmtGraphQLContext = new InteralProjectMgmtGraphQLContext();
+
+  private ProjectDataLoaders projectDataLoaders = new ProjectDataLoaders();
 
   @Override
   public GraphQLContext build(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
@@ -58,7 +61,7 @@ public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
   }
 
   private void addDataLoaders(DataLoaderRegistry dataLoaderRegistry) {
-    // Nothing todo yet
+    // TODO UEBUNG 3: Fuege hier deinen BatchDataLoader der DataLoaderRegistry hinzu
   }
 
   class InteralProjectMgmtGraphQLContext implements ProjectMgmtGraphQLContext {
