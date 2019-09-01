@@ -1,4 +1,4 @@
-package nh.graphql.tasks;
+package nh.graphql.projectmgmt;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;

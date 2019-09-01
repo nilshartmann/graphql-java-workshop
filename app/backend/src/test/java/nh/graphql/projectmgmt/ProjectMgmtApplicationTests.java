@@ -1,4 +1,4 @@
-package nh.graphql.tasks;
+package nh.graphql.projectmgmt;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,9 +31,9 @@ import nh.graphql.projectmgmt.Importer;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TasksApplicationTests {
+public class ProjectMgmtApplicationTests {
 
-  private static final Logger logger = LoggerFactory.getLogger(TasksApplicationTests.class);
+  private static final Logger logger = LoggerFactory.getLogger(ProjectMgmtApplicationTests.class);
 
   @Autowired
   private ResourceLoader resourceLoader;
