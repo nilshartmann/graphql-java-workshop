@@ -1,4 +1,4 @@
-package nh.graphql.projectmgmt.graphql.config;
+package nh.graphql.projectmgmt.graphql.config.web;
 
 import javax.websocket.HandshakeResponse;
 import javax.websocket.server.HandshakeRequest;

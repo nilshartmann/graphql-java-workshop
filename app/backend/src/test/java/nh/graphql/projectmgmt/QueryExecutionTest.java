@@ -19,7 +19,6 @@ import nh.graphql.projectmgmt.domain.TaskRepository;
 import nh.graphql.projectmgmt.domain.TaskService;
 import nh.graphql.projectmgmt.domain.user.UserService;
 import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
-import nh.graphql.projectmgmt.graphql.config.ProjectMgmtGraphQLDefaultContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -44,8 +43,7 @@ public class QueryExecutionTest {
 
   @Test
   public void executeQuery() throws Exception {
-    ProjectMgmtGraphQLContext context = new ProjectMgmtGraphQLDefaultContext(userService, projectRepository,
-        taskService, taskRepository, taskPublisher);
+    ProjectMgmtGraphQLContext context = new TestGraphQLContext();
 
 //
     GraphQL graphQL = GraphQL.newGraphQL(graphQLSchema).build();
@@ -57,6 +55,34 @@ public class QueryExecutionTest {
 //
     Object data = executionResult.getData();
     logger.info("QUERY RESULT {}", data);
+
+  }
+
+  class TestGraphQLContext implements ProjectMgmtGraphQLContext {
+    @Override
+    public UserService getUserService() {
+      return userService;
+    }
+
+    @Override
+    public ProjectRepository getProjectRepository() {
+      return projectRepository;
+    }
+
+    @Override
+    public TaskService getTaskService() {
+      return taskService;
+    }
+
+    @Override
+    public TaskRepository getTaskRepository() {
+      return taskRepository;
+    }
+
+    @Override
+    public TaskPublisher getTaskPublisher() {
+      return taskPublisher;
+    }
 
   }
 

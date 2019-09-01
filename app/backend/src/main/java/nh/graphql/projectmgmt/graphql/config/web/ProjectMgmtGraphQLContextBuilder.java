@@ -1,4 +1,4 @@
-package nh.graphql.projectmgmt.graphql.config;
+package nh.graphql.projectmgmt.graphql.config.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

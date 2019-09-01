@@ -1,4 +1,4 @@
-package nh.graphql.projectmgmt.graphql;
+package nh.graphql.projectmgmt.graphql.config;
 
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 
