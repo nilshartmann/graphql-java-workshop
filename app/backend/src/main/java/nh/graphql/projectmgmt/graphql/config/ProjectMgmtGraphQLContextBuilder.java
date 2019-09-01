@@ -17,10 +17,11 @@ import nh.graphql.projectmgmt.domain.TaskPublisher;
 import nh.graphql.projectmgmt.domain.TaskRepository;
 import nh.graphql.projectmgmt.domain.TaskService;
 import nh.graphql.projectmgmt.domain.user.UserService;
+import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
 import nh.graphql.projectmgmt.graphql.fetcher.ProjectDataLoaders;
 
 @Component
-public class ProjectGraphQLContextBuilder implements GraphQLContextBuilder {
+public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
 
   @Autowired
   private UserService userService;

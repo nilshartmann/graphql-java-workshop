@@ -7,7 +7,7 @@ import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Task;
 import nh.graphql.projectmgmt.domain.user.User;
 import nh.graphql.projectmgmt.domain.user.UserService;
-import nh.graphql.projectmgmt.graphql.config.ProjectMgmtGraphQLContext;
+import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
 
 public class TaskFetchers {
 

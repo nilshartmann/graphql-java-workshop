@@ -17,11 +17,12 @@ import nh.graphql.projectmgmt.domain.TaskPublisher;
 import nh.graphql.projectmgmt.domain.TaskRepository;
 import nh.graphql.projectmgmt.domain.TaskService;
 import nh.graphql.projectmgmt.domain.user.UserService;
+import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
 
 /**
  * Enhanced copy of from graphql.servlet.context.DefaultGraphQLServletContext
  */
-public class ProjectMgmtGraphQLServletContext extends DefaultGraphQLContext
+class ProjectMgmtGraphQLServletContext extends DefaultGraphQLContext
     implements GraphQLServletContext, ProjectMgmtGraphQLContext {
   private final ProjectMgmtGraphQLContext projectMgmtGraphQLContext;
 

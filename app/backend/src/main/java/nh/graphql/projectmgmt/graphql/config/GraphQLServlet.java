@@ -17,7 +17,7 @@ public class GraphQLServlet extends GraphQLHttpServlet {
   private GraphQLSchema schema;
 
   @Autowired
-  private ProjectGraphQLContextBuilder projectGraphQLContextBuilder;
+  private ProjectMgmtGraphQLContextBuilder projectGraphQLContextBuilder;
 
   @Override
   protected GraphQLConfiguration getConfiguration() {

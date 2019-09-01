@@ -11,7 +11,7 @@ import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Task;
 import nh.graphql.projectmgmt.domain.TaskState;
-import nh.graphql.projectmgmt.graphql.config.ProjectMgmtGraphQLContext;
+import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
@@ -31,7 +31,8 @@ public class MutationFetchers {
       String title = input.get("title");
       String description = input.get("description");
       String toBeFinishedAtInput = input.get("toBeFinishedAt");
-      LocalDateTime toBeFinishedAt = toBeFinishedAtInput != null ? LocalDateTime.parse(toBeFinishedAtInput, formatter)
+      LocalDateTime toBeFinishedAt = toBeFinishedAtInput != null && toBeFinishedAtInput.length() > 0
+          ? LocalDateTime.parse(toBeFinishedAtInput, formatter)
           : LocalDateTime.now().plusDays(14);
       String assigneeId = input.get("assigneeId");
 

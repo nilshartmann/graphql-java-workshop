@@ -1,4 +1,4 @@
-package nh.graphql.projectmgmt.graphql.config;
+package nh.graphql.projectmgmt.graphql;
 
 import nh.graphql.projectmgmt.domain.ProjectRepository;
 import nh.graphql.projectmgmt.domain.TaskPublisher;

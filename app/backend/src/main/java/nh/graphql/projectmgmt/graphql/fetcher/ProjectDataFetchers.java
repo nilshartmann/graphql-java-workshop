@@ -9,7 +9,7 @@ import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Project;
 import nh.graphql.projectmgmt.domain.Task;
 import nh.graphql.projectmgmt.domain.user.User;
-import nh.graphql.projectmgmt.graphql.config.ProjectMgmtGraphQLContext;
+import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)

@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.Lifecycle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 import org.springframework.web.socket.server.standard.ServerEndpointRegistration;
 
@@ -23,7 +24,7 @@ public class GraphQLWebsocketConfiguration {
 
   @Bean
   public ServerEndpointRegistration serverEndpointRegistration(GraphQLSchema schema,
-      ProjectGraphQLContextBuilder projectGraphQLContextBuilder) {
+      ProjectMgmtGraphQLContextBuilder projectGraphQLContextBuilder) {
     DefaultGraphQLSchemaProvider schemaProvider = new DefaultGraphQLSchemaProvider(schema);
     GraphQLQueryInvoker queryInvoker = GraphQLQueryInvoker.newBuilder().build();
     GraphQLInvocationInputFactory invocationInputFactory = GraphQLInvocationInputFactory.newBuilder(schemaProvider) //
@@ -40,6 +41,7 @@ public class GraphQLWebsocketConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
+  @Profile("!withoutWebSocket")
   public ServerEndpointExporter serverEndpointExporter() {
     return new ServerEndpointExporter();
   }

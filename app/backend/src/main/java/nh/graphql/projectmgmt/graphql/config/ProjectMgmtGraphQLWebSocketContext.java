@@ -15,12 +15,13 @@ import nh.graphql.projectmgmt.domain.TaskPublisher;
 import nh.graphql.projectmgmt.domain.TaskRepository;
 import nh.graphql.projectmgmt.domain.TaskService;
 import nh.graphql.projectmgmt.domain.user.UserService;
+import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
 
 /**
  * Copied and enhanced from
  * graphql.servlet.context.DefaultGraphQLWebSocketContext
  */
-public class ProjectMgmtGraphQLWebSocketContext extends DefaultGraphQLContext
+class ProjectMgmtGraphQLWebSocketContext extends DefaultGraphQLContext
     implements GraphQLWebSocketContext, ProjectMgmtGraphQLContext {
   private final ProjectMgmtGraphQLContext projectContextDelegatee;
   private final Session session;
