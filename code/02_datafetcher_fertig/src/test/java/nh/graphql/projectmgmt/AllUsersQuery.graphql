@@ -1,0 +1,13 @@
+query {
+  users { name }
+  projects {
+    owner {
+      name
+    }
+    tasks {
+      assignee {
+        name
+      }
+    }
+  }
+}
