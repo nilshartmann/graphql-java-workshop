@@ -13,7 +13,7 @@ public class ProjectMgmtGraphQLDefaultContext extends DefaultGraphQLContext impl
 
   private ProjectMgmtGraphQLContext contextDelegatee;
 
-  ProjectMgmtGraphQLDefaultContext(ProjectMgmtGraphQLContext contextDelegatee) {
+  public ProjectMgmtGraphQLDefaultContext(ProjectMgmtGraphQLContext contextDelegatee) {
     super(new DataLoaderRegistry(), null);
     this.contextDelegatee = contextDelegatee;
   }
