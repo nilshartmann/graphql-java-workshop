@@ -33,22 +33,27 @@ public class ProjectMgmtGraphQLDefaultContext extends DefaultGraphQLContext impl
     this.taskPublisher = taskPublisher;
   }
 
+  @Override
   public UserService getUserService() {
     return userService;
   }
 
+  @Override
   public ProjectRepository getProjectRepository() {
     return projectRepository;
   }
 
+  @Override
   public TaskService getTaskService() {
     return taskService;
   }
 
+  @Override
   public TaskRepository getTaskRepository() {
     return taskRepository;
   }
 
+  @Override
   public TaskPublisher getTaskPublisher() {
     return taskPublisher;
   }

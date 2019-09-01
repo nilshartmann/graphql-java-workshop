@@ -51,6 +51,7 @@ public class ProjectMgmtApplication {
   @Bean
   WebMvcConfigurer webConfig() {
     return new WebMvcConfigurer() {
+      @Override
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowCredentials(true);
       }

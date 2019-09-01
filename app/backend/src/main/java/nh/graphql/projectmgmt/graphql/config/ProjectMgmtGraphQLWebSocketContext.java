@@ -51,22 +51,27 @@ class ProjectMgmtGraphQLWebSocketContext extends DefaultGraphQLContext
     return handshakeRequest;
   }
 
+  @Override
   public UserService getUserService() {
     return projectContextDelegatee.getUserService();
   }
 
+  @Override
   public ProjectRepository getProjectRepository() {
     return projectContextDelegatee.getProjectRepository();
   }
 
+  @Override
   public TaskService getTaskService() {
     return projectContextDelegatee.getTaskService();
   }
 
+  @Override
   public TaskRepository getTaskRepository() {
     return projectContextDelegatee.getTaskRepository();
   }
 
+  @Override
   public TaskPublisher getTaskPublisher() {
     return projectContextDelegatee.getTaskPublisher();
   }

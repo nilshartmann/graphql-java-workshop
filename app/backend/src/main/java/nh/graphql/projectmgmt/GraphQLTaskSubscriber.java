@@ -36,7 +36,8 @@ public class GraphQLTaskSubscriber {
       @Override
       public void onNext(ExecutionResult t) {
         try {
-          logger.info("Received new Task {}", (Object) t.getData());
+          Object data = t.getData();
+          logger.info("Received new Task {}", data);
           subscription.request(1);
         } catch (Exception ex) {
           logger.error("Error in onNext", ex);

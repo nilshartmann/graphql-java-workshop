@@ -66,22 +66,27 @@ class ProjectMgmtGraphQLServletContext extends DefaultGraphQLContext
     }
   }
 
+  @Override
   public UserService getUserService() {
     return projectMgmtGraphQLContext.getUserService();
   }
 
+  @Override
   public ProjectRepository getProjectRepository() {
     return projectMgmtGraphQLContext.getProjectRepository();
   }
 
+  @Override
   public TaskService getTaskService() {
     return projectMgmtGraphQLContext.getTaskService();
   }
 
+  @Override
   public TaskRepository getTaskRepository() {
     return projectMgmtGraphQLContext.getTaskRepository();
   }
 
+  @Override
   public TaskPublisher getTaskPublisher() {
     return projectMgmtGraphQLContext.getTaskPublisher();
   }
