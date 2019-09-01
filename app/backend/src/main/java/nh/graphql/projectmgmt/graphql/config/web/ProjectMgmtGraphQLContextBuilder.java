@@ -6,7 +6,7 @@ import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
 
 import org.dataloader.DataLoader;
-import org.dataloader.DataLoaderRegistry;
+import org.dataloader.DataLoaderOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,10 +40,10 @@ public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
 
   @Override
   public GraphQLContext build(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-    GraphQLContext graphQLContext = new ProjectMgmtGraphQLServletContext(httpServletRequest, httpServletResponse,
+    GraphQLContext context = new ProjectMgmtGraphQLServletContext(httpServletRequest, httpServletResponse,
         interalProjectMgmtGraphQLContext);
-    addDataLoaders(graphQLContext);
-    return graphQLContext;
+    addDataLoaders(context);
+    return context;
   }
 
   @Override
@@ -61,9 +61,10 @@ public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
     return context;
   }
 
-  private void addDataLoaders(GraphQLContext context) {
-    DataLoaderRegistry dataLoaderRegistry = context.getDataLoaderRegistry().orElseThrow();
-    dataLoaderRegistry.register("userDataLoader", DataLoader.newDataLoader(projectDataLoaders.userBatchLoader));
+  private void addDataLoaders(final GraphQLContext context) {
+    DataLoaderOptions loaderOptions = DataLoaderOptions.newOptions().setBatchLoaderContextProvider(() -> context);
+    context.getDataLoaderRegistry().orElseThrow().register("userDataLoader",
+        DataLoader.newDataLoader(projectDataLoaders.userBatchLoader, loaderOptions));
   }
 
   class InteralProjectMgmtGraphQLContext implements ProjectMgmtGraphQLContext {

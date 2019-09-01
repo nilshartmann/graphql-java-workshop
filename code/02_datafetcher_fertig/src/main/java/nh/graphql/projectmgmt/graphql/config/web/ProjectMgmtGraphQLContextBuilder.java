@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
 
+import org.dataloader.DataLoaderOptions;
 import org.dataloader.DataLoaderRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,15 +34,15 @@ public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
   @Autowired
   private TaskPublisher taskPublisher;
 
-  private InteralProjectMgmtGraphQLContext interalProjectMgmtGraphQLContext = new InteralProjectMgmtGraphQLContext();
-
   private ProjectDataLoaders projectDataLoaders = new ProjectDataLoaders();
+
+  private InteralProjectMgmtGraphQLContext interalProjectMgmtGraphQLContext = new InteralProjectMgmtGraphQLContext();
 
   @Override
   public GraphQLContext build(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
     GraphQLContext context = new ProjectMgmtGraphQLServletContext(httpServletRequest, httpServletResponse,
         interalProjectMgmtGraphQLContext);
-    addDataLoaders(context.getDataLoaderRegistry().orElseThrow());
+    addDataLoaders(context);
     return context;
   }
 
@@ -49,19 +50,24 @@ public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
   public GraphQLContext build(Session session, HandshakeRequest handshakeRequest) {
     GraphQLContext context = new ProjectMgmtGraphQLWebSocketContext(session, handshakeRequest,
         interalProjectMgmtGraphQLContext);
-    addDataLoaders(context.getDataLoaderRegistry().orElseThrow());
+    addDataLoaders(context);
     return context;
   }
 
   @Override
   public GraphQLContext build() {
     GraphQLContext context = new ProjectMgmtGraphQLDefaultContext(interalProjectMgmtGraphQLContext);
-    addDataLoaders(context.getDataLoaderRegistry().orElseThrow());
+    addDataLoaders(context);
     return context;
   }
 
-  private void addDataLoaders(DataLoaderRegistry dataLoaderRegistry) {
-    // TODO UEBUNG 3: Fuege hier deinen BatchDataLoader der DataLoaderRegistry hinzu
+  private void addDataLoaders(final GraphQLContext context) {
+    DataLoaderOptions loaderOptions = DataLoaderOptions.newOptions().setBatchLoaderContextProvider(() -> context);
+    DataLoaderRegistry dataLoaderRegistry = context.getDataLoaderRegistry().orElseThrow();
+
+    // TODO Uebung 3: Registriere hier deinen userDataLoader an der
+    // dataLoaderRegistry
+    // Bitte uebergebe dabei das oben erzeugte DataLoaderOptions-Objekt
   }
 
   class InteralProjectMgmtGraphQLContext implements ProjectMgmtGraphQLContext {

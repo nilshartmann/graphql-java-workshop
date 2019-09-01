@@ -83,6 +83,13 @@ public class ProjectMgmtApplicationTests {
   }
 
   @Test
+  public void projectsPageQueryWithDataLoader() {
+    String query = loadGraphQL("ProjectsPageQueryWithDataLoader");
+    GraphQLTestResponse graphQLTestResponse = execute(query);
+    assertThat(graphQLTestResponse.getInt("$.data.projects.length()")).isEqualTo(6);
+  }
+
+  @Test
   public void allUsersQuery() {
     String query = loadGraphQL("AllUsersQuery");
     GraphQLTestResponse graphQLTestResponse = execute(query);
