@@ -2,8 +2,11 @@ package nh.graphql.projectmgmt.graphql.fetcher;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +20,8 @@ import nh.graphql.projectmgmt.domain.user.UserService;
 
 @Component
 public class QueryResolver implements GraphQLQueryResolver {
+
+  private static final Logger logger = LoggerFactory.getLogger(QueryResolver.class);
 
   @Autowired
   private UserService userService;
@@ -43,8 +48,21 @@ public class QueryResolver implements GraphQLQueryResolver {
     return projectRepository.findById(projectId, isCategorySelected(environment), isTasksSelected(environment));
   }
 
-  public Iterable<Project> projects(DataFetchingEnvironment environment) {
-    return projectRepository.findAll(isCategorySelected(environment), isTasksSelected(environment));
+  public ProjectConnection projects(Optional<Integer> pageArgument, Optional<Integer> pageSizeArgument,
+      DataFetchingEnvironment environment) {
+
+    int page = pageArgument.orElse(0);
+    int pageSize = pageSizeArgument.orElse(5);
+
+    logger.info("pageArgument {}, page {}, pageSizeArgument {}, pageSize {}", pageArgument, page, pageSizeArgument,
+        pageSize);
+
+    // This is stupid and would be optimized in a 'real' application, so that limit
+    // and offset are already
+    // used in the SQL query
+    List<Project> result = projectRepository.findAll(isCategorySelected(environment), isTasksSelected(environment));
+
+    return ProjectConnection.fromList(result, page, pageSize);
   }
 
   private boolean isCategorySelected(DataFetchingEnvironment environment) {

@@ -32,7 +32,7 @@ public class ProjectMgmtApplication {
       GraphQLTaskSubscriber graphQLTaskSubscriber) {
     return args -> {
       logger.info("====== IMPORTING DATA ======= ");
-      importer.add();
+      importer.addDummies();
       logger.info("====== SERVER RUNNING ======= ");
     };
 

@@ -59,6 +59,17 @@ public class Importer {
   }
 
   @Transactional
+  public void addDummies() {
+    Category c1 = categoryRepository.save(new Category("Private"));
+    for (int i = 1; i <= 17; i++) {
+      Project p = new Project("U1", c1, "Project-" + i, "PROJECT DESCRIPTION  " + i);
+      p.addTask(new Task("U2", "A Task for Project #" + i, rd(), LocalDateTime.now()));
+
+      projectRepository.save(p);
+    }
+  }
+
+  @Transactional
   public void add() {
 
     Category c1 = categoryRepository.save(new Category("Private"));

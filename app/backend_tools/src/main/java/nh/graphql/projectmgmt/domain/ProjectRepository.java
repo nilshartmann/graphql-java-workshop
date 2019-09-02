@@ -1,6 +1,7 @@
 package nh.graphql.projectmgmt.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -43,7 +44,7 @@ public class ProjectRepository {
     return Optional.ofNullable(project);
   }
 
-  public Iterable<Project> findAll(boolean withCategory, boolean withTasks) {
+  public List<Project> findAll(boolean withCategory, boolean withTasks) {
     logger.info("FIND ALL PROJECTS, withCategory: {}, withTasks: {}", withCategory, withTasks);
 
     EntityGraph<Project> entityGraph = buildFetchHints(withCategory, withTasks);

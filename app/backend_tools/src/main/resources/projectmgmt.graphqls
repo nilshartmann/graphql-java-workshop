@@ -111,6 +111,20 @@ type Task {
   toBeFinishedAt: String!
 }
 
+
+type PageResult {
+  page: Int!
+  totalCount: Int!
+  totalPageCount: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
+type ProjectConnection {
+  page: PageResult!
+  nodes: [Project!]!
+}
+
 type Query {
   """
   Returns `Hello, World` and a timestamp when the server is running
@@ -122,7 +136,7 @@ type Query {
   """
   Return an unordered list of all projects
   """
-  projects: [Project!]!
+  projects(page: Int, pageSize: Int): ProjectConnection
 
   project(id: ID!): Project
 }
