@@ -2,25 +2,31 @@ package nh.graphql.projectmgmt.graphql.config;
 
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.coxautodev.graphql.tools.SchemaParser;
+
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
-import graphql.schema.idl.SchemaGenerator;
-import graphql.schema.idl.SchemaParser;
-import graphql.schema.idl.TypeDefinitionRegistry;
 import nh.graphql.projectmgmt.graphql.fetcher.MutationFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.MutationResolver;
 import nh.graphql.projectmgmt.graphql.fetcher.ProjectDataFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.ProjectResolver;
 import nh.graphql.projectmgmt.graphql.fetcher.QueryDataFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.QueryResolver;
 import nh.graphql.projectmgmt.graphql.fetcher.SubscriptionFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.SubscriptionResolver;
 import nh.graphql.projectmgmt.graphql.fetcher.TaskFetchers;
+import nh.graphql.projectmgmt.graphql.fetcher.TaskResolver;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
@@ -32,17 +38,31 @@ public class GraphQLApiConfiguration {
   private final static Logger logger = LoggerFactory.getLogger(GraphQLApiConfiguration.class);
 
   @Bean
-  public GraphQLSchema graphQLSchema() {
+  public GraphQLSchema graphQLSchema(MutationResolver mutationResolver, ProjectResolver projectResolver,
+      QueryResolver queryResolver, TaskResolver taskResolver, SubscriptionResolver subscriptionResolver)
+      throws IOException {
     logger.info("Building GraphQL Schema");
 
-    SchemaParser schemaParser = new SchemaParser();
-    InputStream inputStream = getClass().getResourceAsStream("/projectmgmt.graphqls");
-    TypeDefinitionRegistry typeRegistry = schemaParser.parse(new InputStreamReader(inputStream));
+    String schemaString = readSchema("/projectmgmt.graphqls");
 
-    RuntimeWiring runtimeWiring = setupWiring();
+    // SchemaParser from graphql-java-tools !
+    SchemaParser schemaParser = SchemaParser.newParser() //
+        .schemaString(schemaString) //
+        .resolvers(mutationResolver, projectResolver, queryResolver, taskResolver, subscriptionResolver) //
+        .build();
 
-    SchemaGenerator schemaGenerator = new SchemaGenerator();
-    return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
+    GraphQLSchema makeExecutableSchema = schemaParser.makeExecutableSchema();
+    logger.info("Support isSupportingSubscriptions {}", makeExecutableSchema.isSupportingSubscriptions());
+    return makeExecutableSchema;
+//    
+//
+////    SchemaParser schemaParser = new SchemaParser();
+//    TypeDefinitionRegistry typeRegistry = schemaParser.parse(new InputStreamReader(inputStream));
+//
+//    RuntimeWiring runtimeWiring = setupWiring();
+//
+//    SchemaGenerator schemaGenerator = new SchemaGenerator();
+//    return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
   }
 
   private RuntimeWiring setupWiring() {
@@ -78,5 +98,22 @@ public class GraphQLApiConfiguration {
   @Bean
   public GraphQL graphql(GraphQLSchema graphQLSchema) {
     return GraphQL.newGraphQL(graphQLSchema).build();
+  }
+
+  private String readSchema(String fileName) throws IOException {
+
+    InputStream inputStream = getClass().getResourceAsStream(fileName);
+    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+    int nRead;
+    byte[] data = new byte[1024];
+    while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+      buffer.write(data, 0, nRead);
+    }
+
+    buffer.flush();
+    byte[] byteArray = buffer.toByteArray();
+
+    String text = new String(byteArray, StandardCharsets.UTF_8);
+    return text;
   }
 }
