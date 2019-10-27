@@ -4,3 +4,4 @@ yarn-error.log
 db.sqlite
 .sts-workspace-app
 .sts-workspace-code
+gradle-home/
