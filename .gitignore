@@ -5,3 +5,5 @@ db.sqlite
 .sts-workspace-app
 .sts-workspace-code
 gradle-home/
+build/
+.gradle/

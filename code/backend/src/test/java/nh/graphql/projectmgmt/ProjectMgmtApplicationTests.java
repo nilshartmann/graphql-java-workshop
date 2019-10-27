@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -35,15 +32,12 @@ public class ProjectMgmtApplicationTests {
   private static final Logger logger = LoggerFactory.getLogger(ProjectMgmtApplicationTests.class);
 
   @Autowired
-  private ResourceLoader resourceLoader;
-
-  @Autowired
   TestRestTemplate restTemplate;
 
   @Autowired
   Importer importer;
 
-  private ObjectMapper objectMapper = new ObjectMapper();
+  ObjectMapper objectMapper = new ObjectMapper();
 
   @Test
   public void ping() throws JsonProcessingException {
@@ -52,17 +46,10 @@ public class ProjectMgmtApplicationTests {
   }
 
   @Test
-  @Ignore("Query funktioniert in dieser ausbaustufe noch nicht")
-  public void projects() throws JsonProcessingException {
-    GraphQLTestResponse graphQLTestResponse = execute("query {projects{id}}");
-    assertThat(graphQLTestResponse.getInt("$.data.projects.length()")).isEqualTo(6);
-  }
-
-  @Test
-  @Ignore("Query funktioniert in dieser ausbaustufe noch nicht")
-  public void projectTasks() throws JsonProcessingException {
-    GraphQLTestResponse graphQLTestResponse = execute("query {project(id:1){id tasks { title }}}");
-    assertThat(graphQLTestResponse.getInt("$.data.project.tasks.length()")).isGreaterThanOrEqualTo(3);
+  public void usersQuery() {
+    String query = loadGraphQL("UsersQuery");
+    GraphQLTestResponse graphQLTestResponse = execute(query);
+    assertThat(graphQLTestResponse.getInt("$.data.users.length()")).isEqualTo(8);
   }
 
   @Test
@@ -78,41 +65,19 @@ public class ProjectMgmtApplicationTests {
     }
   }
 
-  @Test
-  @Ignore("Query funktioniert in dieser ausbaustufe noch nicht")
-  public void projectsPageQuery() {
-    String query = loadGraphQL("ProjectsPageQuery");
-    GraphQLTestResponse graphQLTestResponse = execute(query);
-    assertThat(graphQLTestResponse.getInt("$.data.projects.length()")).isEqualTo(6);
-  }
+  protected String loadGraphQL(String name) {
+    String resourceName = name + ".graphql";
 
-  @Test
-  public void usersQuery() {
-    String query = loadGraphQL("UsersQuery");
-    GraphQLTestResponse graphQLTestResponse = execute(query);
-    assertThat(graphQLTestResponse.getInt("$.data.users.length()")).isEqualTo(8);
-  }
-
-  @Test
-  @Ignore("Query funktioniert in dieser ausbaustufe noch nicht")
-  public void allUsersQuery() {
-    String query = loadGraphQL("AllUsersQuery");
-    GraphQLTestResponse graphQLTestResponse = execute(query);
-    assertThat(graphQLTestResponse.getInt("$.data.users.length()")).isEqualTo(8);
-  }
-
-  private String loadGraphQL(String name) {
-    String resourceName = getClass().getPackageName().replace('.', '/') + "/" + name + ".graphQL";
-    Resource resource = resourceLoader.getResource("classpath:" + resourceName);
-    try (InputStream inputStream = resource.getInputStream()) {
+    try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(resourceName)) {
       return StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
     } catch (Exception ex) {
+      ex.printStackTrace();
       throw new IllegalStateException("Could not load resource '" + resourceName + "' from classpath: " + ex, ex);
     }
 
   }
 
-  private GraphQLTestResponse execute(String graphqlQuery) {
+  protected GraphQLTestResponse execute(String graphqlQuery) {
     String jsonRequest = createJsonQuery(graphqlQuery);
     HttpEntity<Object> httpEntity = forJson(jsonRequest);
 
