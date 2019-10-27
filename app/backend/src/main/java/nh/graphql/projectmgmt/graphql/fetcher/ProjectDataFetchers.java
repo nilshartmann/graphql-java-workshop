@@ -1,5 +1,8 @@
 package nh.graphql.projectmgmt.graphql.fetcher;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.dataloader.DataLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,12 +46,13 @@ public class ProjectDataFetchers {
     }
   };
 
-  // graphql.schema.AsyncDataFetcher.async
-//  public DataFetcher estimation = (env -> {
-//    logger.info("Thread {} ", Thread.currentThread().getName());
-//    Thread.sleep(500);
-//    return "Thread " + Thread.currentThread().getName() + " finished @ "
-//        + LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss.SSS"));
-//  });
+  @SuppressWarnings("rawtypes")
+//  public DataFetcher estimation = graphql.schema.AsyncDataFetcher.async(env -> {
+  public DataFetcher estimation = (env -> {
+    logger.info("Thread {} ", Thread.currentThread().getName());
+    Thread.sleep(500);
+    return "Thread " + Thread.currentThread().getName() + " finished @ "
+        + LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss.SSS"));
+  });
 
 }

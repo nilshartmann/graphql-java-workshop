@@ -67,8 +67,9 @@ public class GraphQLApiConfiguration {
             .dataFetcher("onNewTask", subscriptionFetcher.onNewTask)) //
         .type(newTypeWiring("Project") //
             .dataFetcher("task", projectDataFetchers.task) //
-            .dataFetcher("owner", projectDataFetchers.owner))
-        .type(newTypeWiring("Task") //
+            .dataFetcher("owner", projectDataFetchers.owner) //
+        // .dataFetcher("estimation", projectDataFetchers.estimation) //
+        ).type(newTypeWiring("Task") //
             .dataFetcher("assignee", taskFetchers.assignee)) //
         .build();
 

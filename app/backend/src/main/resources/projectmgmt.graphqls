@@ -50,6 +50,13 @@ type Project {
   unterstand the goals and constraints of this project.
   """
   description: String!
+  
+  """
+  How long does this project needs to be done?
+  
+  This is an example for async data fetchers and does nothing by default 
+  """
+  estimation: String
 
   """
   The project owner
