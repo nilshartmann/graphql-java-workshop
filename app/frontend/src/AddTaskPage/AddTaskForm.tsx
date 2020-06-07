@@ -36,7 +36,7 @@ export function AddTaskForm({ users, onSave, onCancel }: AddTaskFormProps) {
   const assignSelectOptions = users.map(u => ({ label: u.name, value: u.id }));
 
   const buttonDisabled =
-    title === "" || description === "" || assigneeId === "" || (toBeFinishedAt !== "" && parseDate(toBeFinishedAt) !== "");
+    title === "" || description === "" || assigneeId === "" || (toBeFinishedAt !== "" && parseDate(toBeFinishedAt) === "");
 
   return (
     <Form>
