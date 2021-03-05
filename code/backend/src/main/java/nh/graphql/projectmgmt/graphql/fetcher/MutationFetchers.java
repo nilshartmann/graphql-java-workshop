@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
+
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Task;
@@ -14,6 +15,7 @@ import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
  * @author Nils Hartmann (nils@nilshartmann.net)
  */
 public class MutationFetchers {
+
   private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS[xxx][xx][X]");
 
   public DataFetcher<Task> addTask = new DataFetcher<>() {

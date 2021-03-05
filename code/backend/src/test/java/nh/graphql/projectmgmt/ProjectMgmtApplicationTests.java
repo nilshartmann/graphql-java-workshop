@@ -54,15 +54,11 @@ public class ProjectMgmtApplicationTests {
 
   @Test
   public void addTask() {
-    try {
       String mutation = loadGraphQL("addTaskMutation");
       GraphQLTestResponse graphQLTestResponse = execute(mutation);
       assertThat(graphQLTestResponse.get("$.data.addTask.title")).isEqualTo("New Task");
       assertThat(graphQLTestResponse.get("$.data.addTask.description")).isEqualTo("New Description");
       assertThat(graphQLTestResponse.get("$.data.addTask.toBeFinishedAt")).isNotBlank();
-    } finally {
-//      importer.reset();
-    }
   }
 
   protected String loadGraphQL(String name) {

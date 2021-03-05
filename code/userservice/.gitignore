@@ -6,7 +6,6 @@ build/
 !**/src/test/**
 
 bin/
-idea/
 
 ### STS ###
 .apt_generated
@@ -17,6 +16,11 @@ idea/
 .springBeans
 .sts4-cache
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 out/
 
 ### NetBeans ###
