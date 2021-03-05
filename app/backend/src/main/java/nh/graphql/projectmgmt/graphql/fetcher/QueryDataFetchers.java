@@ -61,12 +61,12 @@ public class QueryDataFetchers {
   };
 
   private boolean isCategorySelected(DataFetchingEnvironment environment) {
-    boolean useEntityGraph = environment.getField().getDirective("useEntityGraph") != null;
+    boolean useEntityGraph = environment.getField().hasDirective("useEntityGraph");
     return useEntityGraph && environment.getSelectionSet().contains("category");
   }
 
   private boolean isTasksSelected(DataFetchingEnvironment environment) {
-    boolean useEntityGraph = environment.getField().getDirective("useEntityGraph") != null;
+    boolean useEntityGraph = environment.getField().hasDirective("useEntityGraph");
     return useEntityGraph && environment.getSelectionSet().contains("tasks");
   }
 

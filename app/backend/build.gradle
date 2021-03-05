@@ -29,7 +29,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-  compile 'com.graphql-java:graphql-java:13.0'
+  compile 'com.graphql-java:graphql-java:16.2'
 
   // RxJava for Subscriptions
   implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC2"

@@ -13,10 +13,10 @@ public class TaskFetchers {
 
   public DataFetcher<Object> assignee = new DataFetcher<>() {
     @Override
-    public Object get(DataFetchingEnvironment environment) throws Exception {
+    public Object get(DataFetchingEnvironment environment) {
       Task source = environment.getSource();
       String userId = source.getAssigneeId();
-      boolean useDataLoader = environment.getField().getDirective("useDataLoader") != null;
+      boolean useDataLoader = environment.getField().hasDirective("useDataLoader");
 
       if (!useDataLoader) {
         ProjectMgmtGraphQLContext context = environment.getContext();
