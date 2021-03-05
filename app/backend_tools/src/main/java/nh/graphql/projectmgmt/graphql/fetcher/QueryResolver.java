@@ -5,12 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 
 import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Project;

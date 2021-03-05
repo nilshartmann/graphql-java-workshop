@@ -34,7 +34,7 @@ public class ProjectDataFetchers {
     public Object get(DataFetchingEnvironment environment) throws Exception {
       Project project = environment.getSource();
       String userId = project.getOwnerId();
-      boolean useDataLoader = environment.getField().getDirective("useDataLoader") != null;
+      boolean useDataLoader = environment.getField().hasDirective("useDataLoader");
 
       if (!useDataLoader) {
         ProjectMgmtGraphQLContext context = environment.getContext();
@@ -45,6 +45,9 @@ public class ProjectDataFetchers {
       return dataLoader.load(userId);
     }
   };
+
+
+
 
   @SuppressWarnings("rawtypes")
 //  public DataFetcher estimation = graphql.schema.AsyncDataFetcher.async(env -> {

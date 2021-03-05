@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'graphql-project-example'
-include 'backend', 'userservice', 'frontend'
+include 'backend', 'backend_tools', 'userservice', 'frontend'

@@ -28,8 +28,7 @@ public class ProjectMgmtApplication {
   }
 
   @Bean
-  public CommandLineRunner importInitialData(Importer importer, RxStreamsTaskSubscriber taskSubscriber,
-      GraphQLTaskSubscriber graphQLTaskSubscriber) {
+  public CommandLineRunner importInitialData(Importer importer) {
     return args -> {
       logger.info("====== IMPORTING DATA ======= ");
       importer.add();

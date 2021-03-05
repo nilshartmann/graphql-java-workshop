@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,6 +79,7 @@ public class ExternalLoadTest {
 
 
     @Test
+    @Ignore("Can only be run with running userservice")
     public void addTasks() throws Exception {
         CompletableFuture<Void> combinedFuture
             = CompletableFuture.allOf(

@@ -1,9 +1,8 @@
 package nh.graphql.projectmgmt.graphql.fetcher;
 
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 
 import nh.graphql.projectmgmt.domain.Task;
 import nh.graphql.projectmgmt.domain.TaskService;

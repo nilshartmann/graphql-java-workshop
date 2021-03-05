@@ -6,6 +6,17 @@ public class User {
   private String name;
   private String requestId;
 
+  public User() {
+  }
+
+  public User(String id, String login, String name) {
+    this.id = id;
+    this.login = login;
+    this.name = name;
+    this.requestId = "";
+  }
+
+
   public String getId() {
     return id;
   }

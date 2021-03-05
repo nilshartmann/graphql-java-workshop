@@ -19,17 +19,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @ServletComponentScan
-public class ProjectMgmtApplication {
+public class ProjectMgmtApplicationGraphQLTools {
 
-  private static final Logger logger = LoggerFactory.getLogger(ProjectMgmtApplication.class);
+  private static final Logger logger = LoggerFactory.getLogger(ProjectMgmtApplicationGraphQLTools.class);
 
   public static void main(String[] args) {
-    SpringApplication.run(ProjectMgmtApplication.class, args);
+    SpringApplication.run(ProjectMgmtApplicationGraphQLTools.class, args);
   }
 
   @Bean
-  public CommandLineRunner importInitialData(Importer importer, RxStreamsTaskSubscriber taskSubscriber,
-      GraphQLTaskSubscriber graphQLTaskSubscriber) {
+  public CommandLineRunner importInitialData(Importer importer) {
     return args -> {
       logger.info("====== IMPORTING DATA ======= ");
       importer.addDummies();

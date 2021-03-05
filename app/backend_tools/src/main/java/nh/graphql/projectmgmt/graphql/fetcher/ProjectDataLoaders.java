@@ -13,23 +13,22 @@ import org.slf4j.LoggerFactory;
 
 import nh.graphql.projectmgmt.domain.user.User;
 import nh.graphql.projectmgmt.domain.user.UserService;
-import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
 
 public class ProjectDataLoaders {
 
-  private static final Logger logger = LoggerFactory.getLogger(ProjectDataLoaders.class);
-
-  public BatchLoaderWithContext<String, Optional<User>> userBatchLoader = new BatchLoaderWithContext<>() {
-    @Override
-    public CompletionStage<List<Optional<User>>> load(List<String> keys, BatchLoaderEnvironment environment) {
-      logger.info("UserBatchLoader - loading Users with keys '{}'", keys);
-      ProjectMgmtGraphQLContext context = environment.getContext();
-      final UserService userService = context.getUserService();
-      return CompletableFuture.supplyAsync(() -> {
-        return keys.stream() //
-            .map(userService::getUser) //
-            .collect(Collectors.toList());
-      });
-    }
-  };
+//  private static final Logger logger = LoggerFactory.getLogger(ProjectDataLoaders.class);
+//
+//  public BatchLoaderWithContext<String, Optional<User>> userBatchLoader = new BatchLoaderWithContext<>() {
+//    @Override
+//    public CompletionStage<List<Optional<User>>> load(List<String> keys, BatchLoaderEnvironment environment) {
+//      logger.info("UserBatchLoader - loading Users with keys '{}'", keys);
+//      ProjectMgmtGraphQLContext context = environment.getContext();
+//      final UserService userService = context.getUserService();
+//      return CompletableFuture.supplyAsync(() -> {
+//        return keys.stream() //
+//            .map(userService::getUser) //
+//            .collect(Collectors.toList());
+//      });
+//    }
+//  };
 }

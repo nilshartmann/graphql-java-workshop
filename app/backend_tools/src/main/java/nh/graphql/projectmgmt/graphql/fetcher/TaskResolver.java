@@ -2,10 +2,10 @@ package nh.graphql.projectmgmt.graphql.fetcher;
 
 import java.util.concurrent.CompletableFuture;
 
+import graphql.kickstart.tools.GraphQLResolver;
 import org.dataloader.DataLoader;
 import org.springframework.stereotype.Component;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
 
 import graphql.schema.DataFetchingEnvironment;
 import nh.graphql.projectmgmt.domain.Task;

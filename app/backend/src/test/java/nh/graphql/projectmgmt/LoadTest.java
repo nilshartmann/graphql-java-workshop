@@ -1,10 +1,13 @@
 package nh.graphql.projectmgmt;
 
+import nh.graphql.projectmgmt.domain.user.UserService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
