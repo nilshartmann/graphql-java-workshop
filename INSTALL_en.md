@@ -1,4 +1,4 @@
-# GraphQL Java Workshop Preparations
+# GraphQL Java Workshop Requirements and Setup
 
 Here you will find all the requirements and preparations for the GraphQL workshop.
 
@@ -12,7 +12,7 @@ For the exercises you need:
 - Gradle
 - Git
 - a Java IDE (for example IntelliJ or Eclipse)
-- Free ports on your machine: 5000 und 5010
+- Free ports on your machine: 5000 and 5010
 
 **During the workshop**
 
@@ -20,7 +20,7 @@ For the exercises you need:
 - **I'm happy if you have your camera on** during the training so we can see each other 🎥. Please only turn on the microphone if you want to say something or ask a question (which you are of course allowed to do at any time!).
 - Wifi is convenient, but especially for (long) streaming sessions, a wired network is more stable than wifi, so if in doubt, plug in the cable (and deactivate wifi) 😊
 
-# Installation and preparation of the workspace for the training.
+# Installation and preparation of the workspace for the training
 
 - Please perform the following steps **once before the workshop** to save us time during the workshop.
 - Note: you will probably need to clone the repository again during the workshop and also run `gradle build` again, but these should only be minor changes. Please make sure that you have access to git and gradle during the workshop (or internet access for that matter).
