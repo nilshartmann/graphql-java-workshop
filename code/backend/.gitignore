@@ -6,7 +6,7 @@ build/
 !**/src/test/**
 
 bin/
-idea/
+.idea/
 
 ### STS ###
 .apt_generated
