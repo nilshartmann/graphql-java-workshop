@@ -65,9 +65,11 @@ public class ProjectMgmtGraphQLContextBuilder implements GraphQLContextBuilder {
     DataLoaderOptions loaderOptions = DataLoaderOptions.newOptions().setBatchLoaderContextProvider(() -> context);
     DataLoaderRegistry dataLoaderRegistry = context.getDataLoaderRegistry().orElseThrow();
 
-    // TODO Uebung 3: Registriere hier deinen userDataLoader an der
-    // dataLoaderRegistry
-    // Bitte uebergebe dabei das oben erzeugte DataLoaderOptions-Objekt
+    // TODO: Create an instance of your userDataLoader
+    // and register it with the name "userDaterLoader" on the dataLoaderRegistry
+    //
+    // note that you need to wrap your dataloaded using DataLoader.newDataLoader:
+    //  DataLoader.newDataLoader(yourUserDataLoader, loaderOptions)
   }
 
   class InteralProjectMgmtGraphQLContext implements ProjectMgmtGraphQLContext {

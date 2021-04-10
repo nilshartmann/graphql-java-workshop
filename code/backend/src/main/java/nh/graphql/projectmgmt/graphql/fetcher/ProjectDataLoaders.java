@@ -3,33 +3,34 @@ package nh.graphql.projectmgmt.graphql.fetcher;
 public class ProjectDataLoaders {
 
   // TODO:
-  // Implementiere einen BatchLoaderWithContext
+  // Implement a BatchLoaderWithContext
   // - Du benögist entweder eine Funktion, die einen BatchLoaderWithContext
   // zurückliefert
   // oder Du verwendest ein public Field dafür (genau wie bei den DataFetchers)
 
   //
-  // - Die beiden Typ-Parameter für den BatchLoaderWithContext sind 'String' und
-  // java.util.Option<User>
-  // - Die Methode 'load', die im BatcherLoaderWithContext definiert ist, die Du
-  // implementieren musst
-  // erwartet zwei Parameter:
-  // - 1. Eine Liste mit Strings: Das sind die Keys der Benutzer, die geladen
-  // werden sollen
-  // - 2. Ein Objekt vom Typ 'BatchLoaderEnvironment', hierüber bekommst Du wieder
-  // unseren bekannten Context
-  //
-  // Innerhalb der 'load-Methode musst Du:
-  // CompletableFuture.supplyAsync eine Funktion übergeben
-  // - die keine Parameter hat,
-  // - innerhalb der Funktion rufst Du für jeden Key aus der 'keys'-Liste den
-  // UserService auf
-  // und lädst die User
-  // - Die geladenen User (bzw Optional<User>) lieferst Du dann zurück
-  //
-  // Die Signatur der 'load'-Methode ist: CompletionStage<List<Optional<User>>>
-  // load(List<String> keys, BatchLoaderEnvironment environment)
+  // - The Type-Arguments for the generic BatchLoaderWithContext are 'java.lang.String' and
+  // java.util.Optional<User> (as our UserService returns an Optional of User)
+  // - You need to implement the 'load' method declared in BatcherLoaderWithContext
+  // - The method receives two parameters:
+  // - 1. A java.util.List with Strings: This are the keys of Users you should load from the
+  //      remote service
+  // - 2. An object of Type 'BatchLoaderEnvironment'. You can use this object to receive
+  //      the ProjectMgmtGraphQLContext context and from the context the UserService
 
   //
+  // Inside the "load"-method you need to:
+  //   Invoke UserService.getUser for each id that is passed to the BatchLoader
+  //   Return a List of the loaded user object (as Optionals: List<Optional<User>>)
+  //
+  // When this works, you can enhance your BatchLoader an make it asynchronus,
+  //  so that all users are fetched in parallel:
+  //
+  //  - You can use CompletableFuture.supplyAsync. This method expects a (Lambda-)function
+  //    Move the UserService-Call into this lambda function
+  //  - The complete signature of the load method using the CompletableFuture is:
+  //     public CompletableFuture<List<Optional<User>>>
+  //       load(List<String> keys, BatchLoaderEnvironment environment) { ... }
+
 
 }

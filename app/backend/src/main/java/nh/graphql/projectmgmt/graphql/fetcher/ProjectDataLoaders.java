@@ -21,7 +21,7 @@ public class ProjectDataLoaders {
 
   public BatchLoaderWithContext<String, Optional<User>> userBatchLoader = new BatchLoaderWithContext<>() {
     @Override
-    public CompletionStage<List<Optional<User>>> load(List<String> keys, BatchLoaderEnvironment environment) {
+    public CompletableFuture<List<Optional<User>>> load(List<String> keys, BatchLoaderEnvironment environment) {
       logger.info("UserBatchLoader - loading Users with keys '{}'", keys);
       ProjectMgmtGraphQLContext context = environment.getContext();
       final UserService userService = context.getUserService();
