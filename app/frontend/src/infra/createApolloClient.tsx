@@ -7,8 +7,8 @@ import { ApolloLink } from "apollo-link";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 
-const APOLLO_URL = "http://localhost:5000/graphql";
-const APOLLO_WS_URL = "ws://localhost:5000/subscriptions";
+const APOLLO_URL = "http://localhost:4000/graphql";
+const APOLLO_WS_URL = "ws://localhost:4000/subscriptions";
 
 export default function createApolloClient() {
   const httpLink = new HttpLink({
