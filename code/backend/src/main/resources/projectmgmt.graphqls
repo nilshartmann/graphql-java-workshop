@@ -1,41 +1,50 @@
 # TODO 1: --------------------------------------------------------------------------
 #
-# Füge den Type 'Project' zum Schema hinzu
+# Create the type 'Project'
 #
-# FELDER:
+# FIELDS (all required, non-null, except otherwise noted)
+#
 # id (ID)
-# title, description: jeweils strings
-# owner: Referenz auf den User-Type
-# category: Referenz auf den Category-Type
-# tasks: Liste mit Task-Objekten
-# task: Erwartet ein Argument (id) und liefert einen optionales Task-Objekt zurück
+# title and description (strings)
+# owner: reference to "User" type
+# category: reference to "Category" type
+# tasks: List of "Task" objects
+# task: excpects one argument (id) and returns a "Task" object (might return null)
 #
-# Alle Felder sind *Pflicht*-Felder, dh dürfen kein null zurückgeben (bis auf 'task' Feld)
 
 # TODO 2: --------------------------------------------------------------------------
 #
-# Füge die Felder 'project' und 'projects' am Query-Type hinzu
-# 'projects', der eine Liste mit Projekten zurückliefert
-# 'project', das ein einzelnes Projekt (optional) zurückliefert.
-#            Dieses Feld benötigt die id des gesuchten Projektes
-#            als (Pflicht-)Feld
+# Add both fields "project" and "projects" to the existing "Query" type
+
+# 'projects': returns a list of "Project"-types (not null)
+# 'project': returns a single project (might be null)
+#            takes one parameter, id of the requested project
+#
 
 # TODO 3: --------------------------------------------------------------------------
-# Ergänze die 'updateTaskState' Mutation
-# Sie erwartet zwei Argumente:
-#    taskId (Pflicht)
-#    newState (Pflicht)
-# Sie liefert ein Task-Objekt zurück (Pflicht)
+# Add the 'updateTaskState' mutation:
+# The mutation expects to arguments:
+#    taskId (not null)
+#    newState (not null)
+# The mutation should return a Task object (required, not-null)
 
-# ---------------------------------------------------------------------------------
+# TODO 4: --------------------------------------------------------------------------
 #
-# Du kannst das Schema jederzeit im GraphQL Playground (http://localhost:5000)
-# kontrollieren.
+# - add some documentation to your scheme and inspect it in GraphiQL
 #
-# Füge exemplarisch Dokumentation hinzu und schau sie dir im Playground an
 #
-# HINWEIS: Das AUSFÜHREN der Queries wird noch nicht funktionieren, aber im Doc Explorer
-#          des Playgrounds sollen die neuen Typen und Felder zu sehen sein.
+# VIEWING YOUR CHANGES IN GRAPHIQL
+# ----------------------------------------------------------------------------------
+#
+# You can see your scheme at any time in GraphiQL (http://localhost:5000/graphiql.html)
+#
+#  - After changing the schema file, you have to rebuild and restart your app
+#  - After restarting your app, you have to reload the page in graphiql, so that graphiql
+#    picks up your changes
+#
+# !! IMPORTANT: RUNNING queries in GraphiQL won't work now, as the implementation is missing,
+# !!            but you should be able to see your types in the documentation and code completion
+#
 
 type User {
   id: ID!
