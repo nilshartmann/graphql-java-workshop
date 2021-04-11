@@ -1,0 +1,12 @@
+ query ProjectsPageQuery {
+    projects {
+      id
+      title
+      owner @useDataLoader {
+        name
+      }
+      category {
+        name
+      }
+    }
+  }
