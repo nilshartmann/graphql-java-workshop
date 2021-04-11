@@ -63,6 +63,7 @@ public class ProjectMgmtApplication {
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
     config.addAllowedOrigin("http://localhost:5080");
+    config.addAllowedOrigin("http://localhost:4080");
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
     source.registerCorsConfiguration("/**", config);
