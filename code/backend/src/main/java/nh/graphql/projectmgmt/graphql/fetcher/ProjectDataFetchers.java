@@ -5,17 +5,22 @@ package nh.graphql.projectmgmt.graphql.fetcher;
  */
 public class ProjectDataFetchers {
 
-  // TODO 1: Füge einen DataFetcher für das 'task'-Feld am 'Project'-Type hinzu
-  // - Du musst die Id des Tasks aus dem Argument des Queries auslesen
-  // - Über das TaskRepository kannst Du den an Hand seiner Id lesen
-  // - Den zurückgegebenen Task kannst Du
+  // TODO 1: Add a DataFetcher for the 'task'-field of the "Project"-type
+  //   - You need to receive the "id" of the task from the Arguments (DateFetchingEnvironment!)
+  //   - Having the Id, you can receive a Task by its Id using the TaskRepository
+  //   - The TaskRepository is available via the Context
+  //   - You can return the Task you have read from the Repository
+  //   - as the Schema has declared an optional value for the task-field, you can return
+  //     either null or an empty Optional-object if no Task has been found with the given id
+  //
 
-  // TODO 2: Füge einen DataFetcher für das 'owner'-Feld am 'Project'-Type hinzu
-  // - Die ID des zugeordneten Users ("owner") bekommst Du über das Project
-  // ("ownerId")
-  // - Wie kommst Du an das Project?
-  // - Wenn Du die User-Id ermittelt hast, kannst Du den UserService zum Laden des
-  // Users
-  // verwenden. Den geladenen User kannst Du als Rückgabe-Wert des DataFetchers
-  // nehmen.
+  // TODO 2: Implement a DataFetcher for the 'owner'-Field at 'Project'-Type
+  // - You have to read the Owner of a project using the Project instance
+  //   that you receive via getSource()
+  // - with this id you can use the UserService to read a User Object
+  // - the UserService is avaible via the Context
+  //  - you can return the loaded User
+
+
+  // TODO 3: Remember to register your DataFetchers in the RuntimeWiring in GraphQLAPIConfiguration!
 }

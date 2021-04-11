@@ -53,11 +53,11 @@ public class GraphQLApiConfiguration {
     MutationFetchers mutationFetchers = new MutationFetchers();
     SubscriptionFetchers subscriptionFetcher = new SubscriptionFetchers();
 
-    // TODO UEBUNG 2:
-    // Füge deine neugebauten DataFetchers für
-    // - 'projects' und 'project' (Query) sowie
-    // - 'task' und 'owner' (Project) hinzu
-    // - für Project musst Du ein komplett neues TypeWiring hinzufügen
+    // TODO Excercise 2:
+    // Add your new implemented DataFetchers to the runtimeWiring:
+    //   - projects
+    //   - tasks
+    //   --> both to the Query Wiring
 
     RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring() //
         .type(newTypeWiring("Query") //
@@ -71,6 +71,11 @@ public class GraphQLApiConfiguration {
             .dataFetcher("onNewTask", subscriptionFetcher.onNewTask)) //
         .type(newTypeWiring("Task") //
             .dataFetcher("assignee", taskFetchers.assignee)) //
+
+      // TOOO Excercise 3
+      //   - create a newTypeWiring for project
+      //   - Add your new DataFetchers for 'task' and 'owner' field to that wiring
+
         .build();
 
     return runtimeWiring;

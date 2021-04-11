@@ -345,11 +345,11 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const OddType = new GraphQLScalarType({
-     *       name: 'Odd',
-     *       serialize(value) {
-     *         return value % 2 === 1 ? value : null;
-     *       }
-     *     });
+ *       name: 'Odd',
+ *       serialize(value) {
+ *         return value % 2 === 1 ? value : null;
+ *       }
+ *     });
      *
      */
 
@@ -408,18 +408,18 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const AddressType = new GraphQLObjectType({
-     *       name: 'Address',
-     *       fields: {
-     *         street: { type: GraphQLString },
-     *         number: { type: GraphQLInt },
-     *         formatted: {
-     *           type: GraphQLString,
-     *           resolve(obj) {
-     *             return obj.number + ' ' + obj.street
-     *           }
-     *         }
-     *       }
-     *     });
+ *       name: 'Address',
+ *       fields: {
+ *         street: { type: GraphQLString },
+ *         number: { type: GraphQLInt },
+ *         formatted: {
+ *           type: GraphQLString,
+ *           resolve(obj) {
+ *             return obj.number + ' ' + obj.street
+ *           }
+ *         }
+ *       }
+ *     });
      *
      * When two types need to refer to each other, or a type needs to refer to
      * itself in a field, you can use a function expression (aka a closure or a
@@ -428,12 +428,12 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const PersonType = new GraphQLObjectType({
-     *       name: 'Person',
-     *       fields: () => ({
-     *         name: { type: GraphQLString },
-     *         bestFriend: { type: PersonType },
-     *       })
-     *     });
+ *       name: 'Person',
+ *       fields: () => ({
+ *         name: { type: GraphQLString },
+ *         bestFriend: { type: PersonType },
+ *       })
+ *     });
      *
      */
     var GraphQLObjectType = exports.GraphQLObjectType = function() {
@@ -544,11 +544,11 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const EntityType = new GraphQLInterfaceType({
-     *       name: 'Entity',
-     *       fields: {
-     *         name: { type: GraphQLString }
-     *       }
-     *     });
+ *       name: 'Entity',
+ *       fields: {
+ *         name: { type: GraphQLString }
+ *       }
+ *     });
      *
      */
     var GraphQLInterfaceType = exports.GraphQLInterfaceType = function() {
@@ -590,17 +590,17 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const PetType = new GraphQLUnionType({
-     *       name: 'Pet',
-     *       types: [ DogType, CatType ],
-     *       resolveType(value) {
-     *         if (value instanceof Dog) {
-     *           return DogType;
-     *         }
-     *         if (value instanceof Cat) {
-     *           return CatType;
-     *         }
-     *       }
-     *     });
+ *       name: 'Pet',
+ *       types: [ DogType, CatType ],
+ *       resolveType(value) {
+ *         if (value instanceof Dog) {
+ *           return DogType;
+ *         }
+ *         if (value instanceof Cat) {
+ *           return CatType;
+ *         }
+ *       }
+ *     });
      *
      */
     var GraphQLUnionType = exports.GraphQLUnionType = function() {
@@ -656,13 +656,13 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const RGBType = new GraphQLEnumType({
-     *       name: 'RGB',
-     *       values: {
-     *         RED: { value: 0 },
-     *         GREEN: { value: 1 },
-     *         BLUE: { value: 2 }
-     *       }
-     *     });
+ *       name: 'RGB',
+ *       values: {
+ *         RED: { value: 0 },
+ *         GREEN: { value: 1 },
+ *         BLUE: { value: 2 }
+ *       }
+ *     });
      *
      * Note: If a value is not provided in a definition, the name of the enum value
      * will be used as its internal value.
@@ -783,13 +783,13 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const GeoPoint = new GraphQLInputObjectType({
-     *       name: 'GeoPoint',
-     *       fields: {
-     *         lat: { type: new GraphQLNonNull(GraphQLFloat) },
-     *         lon: { type: new GraphQLNonNull(GraphQLFloat) },
-     *         alt: { type: GraphQLFloat, defaultValue: 0 },
-     *       }
-     *     });
+ *       name: 'GeoPoint',
+ *       fields: {
+ *         lat: { type: new GraphQLNonNull(GraphQLFloat) },
+ *         lon: { type: new GraphQLNonNull(GraphQLFloat) },
+ *         alt: { type: GraphQLFloat, defaultValue: 0 },
+ *       }
+ *     });
      *
      */
     var GraphQLInputObjectType = exports.GraphQLInputObjectType = function() {
@@ -847,12 +847,12 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const PersonType = new GraphQLObjectType({
-     *       name: 'Person',
-     *       fields: () => ({
-     *         parents: { type: new GraphQLList(Person) },
-     *         children: { type: new GraphQLList(Person) },
-     *       })
-     *     })
+ *       name: 'Person',
+ *       fields: () => ({
+ *         parents: { type: new GraphQLList(Person) },
+ *         children: { type: new GraphQLList(Person) },
+ *       })
+ *     })
      *
      */
     var GraphQLList = exports.GraphQLList = function() {
@@ -886,11 +886,11 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const RowType = new GraphQLObjectType({
-     *       name: 'Row',
-     *       fields: () => ({
-     *         id: { type: new GraphQLNonNull(GraphQLString) },
-     *       })
-     *     })
+ *       name: 'Row',
+ *       fields: () => ({
+ *         id: { type: new GraphQLNonNull(GraphQLString) },
+ *       })
+ *     })
      *
      * Note: the enforcement of non-nullability occurs within the executor.
      */
@@ -1686,9 +1686,9 @@ var GraphiQLSubscriptionsFetcher =
      * Example:
      *
      *     const MyAppSchema = new GraphQLSchema({
-     *       query: MyAppQueryRootType,
-     *       mutation: MyAppMutationRootType,
-     *     })
+ *       query: MyAppQueryRootType,
+ *       mutation: MyAppMutationRootType,
+ *     })
      *
      * Note: If an array of `directives` are provided to GraphQLSchema, that will be
      * the exact list of directives represented and allowed. If `directives` is not
@@ -1697,9 +1697,9 @@ var GraphiQLSubscriptionsFetcher =
      * specified directives, you must explicitly declare them. Example:
      *
      *     const MyAppSchema = new GraphQLSchema({
-     *       ...
-     *       directives: specifiedDirectives.concat([ myCustomDirective ]),
-     *     })
+ *       ...
+ *       directives: specifiedDirectives.concat([ myCustomDirective ]),
+ *     })
      *
      */
     var GraphQLSchema = exports.GraphQLSchema = function() {
@@ -2508,7 +2508,7 @@ var GraphiQLSubscriptionsFetcher =
      *     ]
      *
      *     // { Jon: { name: 'Jon', num: '555-1234' },
-     *     //   Jenny: { name: 'Jenny', num: '867-5309' } }
+ *     //   Jenny: { name: 'Jenny', num: '867-5309' } }
      *     const entriesByName = keyMap(
      *       phoneBook,
      *       entry => entry.name
@@ -2762,23 +2762,23 @@ var GraphiQLSubscriptionsFetcher =
      * visit function.
      *
      *     const editedAST = visit(ast, {
-     *       enter(node, key, parent, path, ancestors) {
-     *         // @return
-     *         //   undefined: no action
-     *         //   false: skip visiting this node
-     *         //   visitor.BREAK: stop visiting altogether
-     *         //   null: delete this node
-     *         //   any value: replace this node with the returned value
-     *       },
-     *       leave(node, key, parent, path, ancestors) {
-     *         // @return
-     *         //   undefined: no action
-     *         //   false: no action
-     *         //   visitor.BREAK: stop visiting altogether
-     *         //   null: delete this node
-     *         //   any value: replace this node with the returned value
-     *       }
-     *     });
+ *       enter(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: skip visiting this node
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       },
+ *       leave(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: no action
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       }
+ *     });
      *
      * Alternatively to providing enter() and leave() functions, a visitor can
      * instead provide functions named the same as the kinds of AST nodes, or
@@ -2788,50 +2788,50 @@ var GraphiQLSubscriptionsFetcher =
      * 1) Named visitors triggered when entering a node a specific kind.
      *
      *     visit(ast, {
-     *       Kind(node) {
-     *         // enter the "Kind" node
-     *       }
-     *     })
+ *       Kind(node) {
+ *         // enter the "Kind" node
+ *       }
+ *     })
      *
      * 2) Named visitors that trigger upon entering and leaving a node of
      *    a specific kind.
      *
      *     visit(ast, {
-     *       Kind: {
-     *         enter(node) {
-     *           // enter the "Kind" node
-     *         }
-     *         leave(node) {
-     *           // leave the "Kind" node
-     *         }
-     *       }
-     *     })
+ *       Kind: {
+ *         enter(node) {
+ *           // enter the "Kind" node
+ *         }
+ *         leave(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
      *
      * 3) Generic visitors that trigger upon entering and leaving any node.
      *
      *     visit(ast, {
-     *       enter(node) {
-     *         // enter any node
-     *       },
-     *       leave(node) {
-     *         // leave any node
-     *       }
-     *     })
+ *       enter(node) {
+ *         // enter any node
+ *       },
+ *       leave(node) {
+ *         // leave any node
+ *       }
+ *     })
      *
      * 4) Parallel visitors for entering and leaving nodes of a specific kind.
      *
      *     visit(ast, {
-     *       enter: {
-     *         Kind(node) {
-     *           // enter the "Kind" node
-     *         }
-     *       },
-     *       leave: {
-     *         Kind(node) {
-     *           // leave the "Kind" node
-     *         }
-     *       }
-     *     })
+ *       enter: {
+ *         Kind(node) {
+ *           // enter the "Kind" node
+ *         }
+ *       },
+ *       leave: {
+ *         Kind(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
      */
     function visit(root, visitor, keyMap) {
       var visitorKeys = keyMap || QueryDocumentKeys;
@@ -4625,26 +4625,26 @@ var GraphiQLSubscriptionsFetcher =
      * var $$iterator = require('iterall').$$iterator
      *
      * function Counter (to) {
-     *   this.to = to
-     * }
+ *   this.to = to
+ * }
      *
      * Counter.prototype[$$iterator] = function () {
-     *   return {
-     *     to: this.to,
-     *     num: 0,
-     *     next () {
-     *       if (this.num >= this.to) {
-     *         return { value: undefined, done: true }
-     *       }
-     *       return { value: this.num++, done: false }
-     *     }
-     *   }
-     * }
+ *   return {
+ *     to: this.to,
+ *     num: 0,
+ *     next () {
+ *       if (this.num >= this.to) {
+ *         return { value: undefined, done: true }
+ *       }
+ *       return { value: this.num++, done: false }
+ *     }
+ *   }
+ * }
      *
      * var counter = new Counter(3)
      * for (var number of counter) {
-     *   console.log(number) // 0 ... 1 ... 2
-     * }
+ *   console.log(number) // 0 ... 1 ... 2
+ * }
      *
      * @type {Symbol|string}
      */
@@ -4720,10 +4720,10 @@ var GraphiQLSubscriptionsFetcher =
      *
      * var forEach = require('iterall').forEach
      * if (isCollection(obj)) {
-     *   forEach(obj, function (value) {
-     *     console.log(value)
-     *   })
-     * }
+ *   forEach(obj, function (value) {
+ *     console.log(value)
+ *   })
+ * }
      *
      * @param obj
      *   An Object value which might implement the Iterable or Array-like protocols.
@@ -4775,8 +4775,8 @@ var GraphiQLSubscriptionsFetcher =
      * var myArray = [ 1, 2, 3 ]
      * var method = getIteratorMethod(myArray)
      * if (method) {
-     *   var iterator = method.call(myArray)
-     * }
+ *   var iterator = method.call(myArray)
+ * }
      *
      * @template T the type of each iterated value
      * @param {Iterable<T>} iterable
@@ -4816,20 +4816,20 @@ var GraphiQLSubscriptionsFetcher =
      * var forEach = require('iterall').forEach
      *
      * forEach(myIterable, function (value, index, iterable) {
-     *   console.log(value, index, iterable === myIterable)
-     * })
+ *   console.log(value, index, iterable === myIterable)
+ * })
      *
      * @example
      *
      * // ES6:
      * for (let value of myIterable) {
-     *   console.log(value)
-     * }
+ *   console.log(value)
+ * }
      *
      * // Any JavaScript environment:
      * forEach(myIterable, function (value) {
-     *   console.log(value)
-     * })
+ *   console.log(value)
+ * })
      *
      * @template T the type of each iterated value
      * @param {Iterable<T>|{ length: number }} collection
@@ -8958,13 +8958,15 @@ var GraphiQLSubscriptionsFetcher =
               }, function(error, result) {
                 if (error) {
                   observer.error(error);
-                } else {
+                }
+                else {
                   observer.next(result);
                 }
               });
             },
           };
-        } else {
+        }
+        else {
           return fallbackFetcher(graphQLParams);
         }
       };
@@ -11222,9 +11224,9 @@ var GraphiQLSubscriptionsFetcher =
      * a common naming convention:
      *
      *   schema {
-     *     query: Query
-     *     mutation: Mutation
-     *   }
+ *     query: Query
+ *     mutation: Mutation
+ *   }
      *
      * When using this naming convention, the schema description can be omitted.
      */

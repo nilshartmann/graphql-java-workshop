@@ -1,0 +1,12 @@
+ query ProjectsPageQuery {
+    projects {
+      id
+      title
+      owner {
+        name
+      }
+      category {
+        name
+      }
+    }
+  }
