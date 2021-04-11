@@ -447,11 +447,13 @@ var SubscriptionsTransportWs =
                   if (observer.complete) {
                     observer.complete();
                   }
-                } else if (error) {
+                }
+                else if (error) {
                   if (observer.error) {
                     observer.error(error[ 0 ]);
                   }
-                } else {
+                }
+                else {
                   if (observer.next) {
                     observer.next(result);
                   }
@@ -475,7 +477,8 @@ var SubscriptionsTransportWs =
             var handler = function(error, result) {
               if (result) {
                 resolve(result);
-              } else {
+              }
+              else {
                 reject(error);
               }
             };
@@ -557,13 +560,15 @@ var SubscriptionsTransportWs =
               var next = function(error) {
                 if (error) {
                   reject(error);
-                } else {
+                }
+                else {
                   if (funcs.length > 0) {
                     var f = funcs.shift();
                     if (f) {
                       f.applyMiddleware.apply(scope, [ options, next ]);
                     }
-                  } else {
+                  }
+                  else {
                     resolve(options);
                   }
                 }
@@ -578,7 +583,8 @@ var SubscriptionsTransportWs =
           middlewares.map(function(middleware) {
             if (typeof middleware.applyMiddleware === 'function') {
               _this.middlewares.push(middleware);
-            } else {
+            }
+            else {
               throw new Error('Middleware must implement the applyMiddleware function.');
             }
           });
@@ -700,7 +706,8 @@ var SubscriptionsTransportWs =
               var parsedMessage = void 0;
               try {
                 parsedMessage = JSON.parse(serializedMessage);
-              } catch (e) {
+              }
+              catch (e) {
                 throw new Error("Message must be JSON-serializable. Got: " + message);
               }
               this.client.send(serializedMessage);
@@ -790,7 +797,8 @@ var SubscriptionsTransportWs =
           try {
             parsedMessage = JSON.parse(receivedData);
             opId = parsedMessage.id;
-          } catch (e) {
+          }
+          catch (e) {
             throw new Error("Message must be JSON-parseable. Got: " + receivedData);
           }
           if ([ message_types_1.default.GQL_DATA,
@@ -1794,23 +1802,23 @@ var SubscriptionsTransportWs =
      * visit function.
      *
      *     const editedAST = visit(ast, {
-     *       enter(node, key, parent, path, ancestors) {
-     *         // @return
-     *         //   undefined: no action
-     *         //   false: skip visiting this node
-     *         //   visitor.BREAK: stop visiting altogether
-     *         //   null: delete this node
-     *         //   any value: replace this node with the returned value
-     *       },
-     *       leave(node, key, parent, path, ancestors) {
-     *         // @return
-     *         //   undefined: no action
-     *         //   false: no action
-     *         //   visitor.BREAK: stop visiting altogether
-     *         //   null: delete this node
-     *         //   any value: replace this node with the returned value
-     *       }
-     *     });
+ *       enter(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: skip visiting this node
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       },
+ *       leave(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: no action
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       }
+ *     });
      *
      * Alternatively to providing enter() and leave() functions, a visitor can
      * instead provide functions named the same as the kinds of AST nodes, or
@@ -1820,50 +1828,50 @@ var SubscriptionsTransportWs =
      * 1) Named visitors triggered when entering a node a specific kind.
      *
      *     visit(ast, {
-     *       Kind(node) {
-     *         // enter the "Kind" node
-     *       }
-     *     })
+ *       Kind(node) {
+ *         // enter the "Kind" node
+ *       }
+ *     })
      *
      * 2) Named visitors that trigger upon entering and leaving a node of
      *    a specific kind.
      *
      *     visit(ast, {
-     *       Kind: {
-     *         enter(node) {
-     *           // enter the "Kind" node
-     *         }
-     *         leave(node) {
-     *           // leave the "Kind" node
-     *         }
-     *       }
-     *     })
+ *       Kind: {
+ *         enter(node) {
+ *           // enter the "Kind" node
+ *         }
+ *         leave(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
      *
      * 3) Generic visitors that trigger upon entering and leaving any node.
      *
      *     visit(ast, {
-     *       enter(node) {
-     *         // enter any node
-     *       },
-     *       leave(node) {
-     *         // leave any node
-     *       }
-     *     })
+ *       enter(node) {
+ *         // enter any node
+ *       },
+ *       leave(node) {
+ *         // leave any node
+ *       }
+ *     })
      *
      * 4) Parallel visitors for entering and leaving nodes of a specific kind.
      *
      *     visit(ast, {
-     *       enter: {
-     *         Kind(node) {
-     *           // enter the "Kind" node
-     *         }
-     *       },
-     *       leave: {
-     *         Kind(node) {
-     *           // leave the "Kind" node
-     *         }
-     *       }
-     *     })
+ *       enter: {
+ *         Kind(node) {
+ *           // enter the "Kind" node
+ *         }
+ *       },
+ *       leave: {
+ *         Kind(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
      */
     function visit(root, visitor, keyMap) {
       var visitorKeys = keyMap || QueryDocumentKeys;
@@ -3027,12 +3035,12 @@ var SubscriptionsTransportWs =
      * @example
      *
      * function Foo() {
-     *   this.a = 1;
-     * }
+ *   this.a = 1;
+ * }
      *
      * function Bar() {
-     *   this.c = 3;
-     * }
+ *   this.c = 3;
+ * }
      *
      * Foo.prototype.b = 2;
      * Bar.prototype.d = 4;
@@ -3068,9 +3076,9 @@ var SubscriptionsTransportWs =
      * @example
      *
      * function Foo() {
-     *   this.a = 1;
-     *   this.b = 2;
-     * }
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
      *
      * Foo.prototype.c = 3;
      *
