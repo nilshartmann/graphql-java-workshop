@@ -1,12 +1,14 @@
 package nh.graphql.projectmgmt.graphql.fetcher;
 
+import nh.graphql.projectmgmt.domain.user.User;
+import org.dataloader.BatchLoaderWithContext;
+
+import java.util.Optional;
+
 public class ProjectDataLoaders {
 
-  // TODO:
-  // Implement a BatchLoaderWithContext
-  // - Du benögist entweder eine Funktion, die einen BatchLoaderWithContext
-  // zurückliefert
-  // oder Du verwendest ein public Field dafür (genau wie bei den DataFetchers)
+  // TODO: Implement the BatchLoader, that loads Users for Ids
+  public BatchLoaderWithContext<String, Optional<User>> userBatchLoader = null;
 
   //
   // - The Type-Arguments for the generic BatchLoaderWithContext are 'java.lang.String' and
@@ -31,6 +33,4 @@ public class ProjectDataLoaders {
   //  - The complete signature of the load method using the CompletableFuture is:
   //     public CompletableFuture<List<Optional<User>>>
   //       load(List<String> keys, BatchLoaderEnvironment environment) { ... }
-
-
 }
