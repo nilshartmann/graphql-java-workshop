@@ -15,17 +15,6 @@ import nh.graphql.projectmgmt.graphql.ProjectMgmtGraphQLContext;
  */
 public class QueryDataFetchers {
 
-  public DataFetcher<String> ping = new DataFetcher<>() {
-    @Override
-    public String get(DataFetchingEnvironment environment) {
-      String msg = environment.getArgument("msg");
-      if (msg == null) {
-        msg = "World";
-      }
-      return "Hello, " + msg + " @ " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
-    }
-  };
-
   public DataFetcher<Iterable<User>> users = new DataFetcher<>() {
     @Override
     public Iterable<User> get(DataFetchingEnvironment environment) {

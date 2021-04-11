@@ -5,6 +5,7 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import nh.graphql.projectmgmt.graphql.fetcher.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +17,6 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import nh.graphql.projectmgmt.graphql.fetcher.MutationFetchers;
-import nh.graphql.projectmgmt.graphql.fetcher.ProjectDataFetchers;
-import nh.graphql.projectmgmt.graphql.fetcher.QueryDataFetchers;
-import nh.graphql.projectmgmt.graphql.fetcher.SubscriptionFetchers;
-import nh.graphql.projectmgmt.graphql.fetcher.TaskFetchers;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
@@ -55,7 +51,6 @@ public class GraphQLApiConfiguration {
 
     RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring() //
         .type(newTypeWiring("Query") //
-            .dataFetcher("ping", queryDataFetchers.ping) //
             .dataFetcher("users", queryDataFetchers.users) //
             .dataFetcher("user", queryDataFetchers.user) //
             .dataFetcher("projects", queryDataFetchers.projects) //
