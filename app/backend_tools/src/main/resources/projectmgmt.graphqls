@@ -100,10 +100,10 @@ type Task {
   description: String!
   state: TaskState!
 
-  """
-  Who works on this Task or should work on the task
-  """
-  assignee: User!
+#  """
+#  Who works on this Task or should work on the task
+#  """
+#  assignee: User!
 
   """
   Deadline for this task
@@ -112,24 +112,11 @@ type Task {
 }
 
 
-type PageResult {
-  page: Int!
-  totalCount: Int!
-  totalPageCount: Int!
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-}
-
-type ProjectConnection {
-  page: PageResult!
-  nodes: [Project!]!
-}
-
 type Query {
-  """
-  Returns `Hello, World` and a timestamp when the server is running
-  """
-  ping(msg: String): String!
+#  """
+#  Returns `Hello, World` and a timestamp when the server is running
+#  """
+#  ping(msg: String): String!
   users: [User!]!
   user(id: ID!): User
 
@@ -137,7 +124,6 @@ type Query {
   Return an unordered list of all projects
   """
   projects: [Project!]!
-#  projects(page: Int, pageSize: Int): ProjectConnection
 
   project(id: ID!): Project
 }

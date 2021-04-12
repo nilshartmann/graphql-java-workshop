@@ -27,13 +27,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 
   @Autowired
   private ProjectRepository projectRepository;
-
-  public String ping(String msg) {
-    if (msg == null) {
-      msg = "World";
-    }
-    return "Hello, " + msg + " @ " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
-  }
+//
 
   public Iterable<User> users() {
     return userService.getAllUsers();
@@ -51,22 +45,6 @@ public class QueryResolver implements GraphQLQueryResolver {
     return projectRepository.findAll(isCategorySelected(environment), isTasksSelected(environment));
   }
 
-//  public ProjectConnection projects(Optional<Integer> pageArgument, Optional<Integer> pageSizeArgument,
-//      DataFetchingEnvironment environment) {
-//
-//    int page = pageArgument.orElse(0);
-//    int pageSize = pageSizeArgument.orElse(5);
-//
-//    logger.info("pageArgument {}, page {}, pageSizeArgument {}, pageSize {}", pageArgument, page, pageSizeArgument,
-//        pageSize);
-//
-//    // This is stupid and would be optimized in a 'real' application, so that limit
-//    // and offset are already
-//    // used in the SQL query
-//    List<Project> result = projectRepository.findAll(isCategorySelected(environment), isTasksSelected(environment));
-//
-//    return ProjectConnection.fromList(result, page, pageSize);
-//  }
 
   private boolean isCategorySelected(DataFetchingEnvironment environment) {
     return environment.getSelectionSet().contains("category");

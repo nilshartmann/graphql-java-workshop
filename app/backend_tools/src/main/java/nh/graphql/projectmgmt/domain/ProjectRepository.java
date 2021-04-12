@@ -29,7 +29,6 @@ public class ProjectRepository {
     em.persist(project);
     return project;
   }
-
   public Optional<Project> findById(long id, boolean withCategory, boolean withTasks) {
     logger.info("FIND PROJECT BY ID, withCategory: {}, withTasks: {}", withCategory, withTasks);
     EntityGraph<Project> entityGraph = buildFetchHints(withCategory, withTasks);

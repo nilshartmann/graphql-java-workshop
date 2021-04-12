@@ -14,11 +14,9 @@ import nh.graphql.projectmgmt.domain.user.User;
 @Component
 public class TaskResolver implements GraphQLResolver<Task> {
 
-  public CompletableFuture<User> assignee(Task source, DataFetchingEnvironment environment) {
-    String userId = source.getAssigneeId();
+  // Implement assignee
+  //   with and without dataloader
 
-    DataLoader<String, User> dataLoader = environment.getDataLoader("userDataLoader");
-    return dataLoader.load(userId);
-  }
+ 
 
 }
