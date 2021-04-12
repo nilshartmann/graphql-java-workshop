@@ -136,7 +136,8 @@ type Query {
   """
   Return an unordered list of all projects
   """
-  projects(page: Int, pageSize: Int): ProjectConnection
+  projects: [Project!]!
+#  projects(page: Int, pageSize: Int): ProjectConnection
 
   project(id: ID!): Project
 }
