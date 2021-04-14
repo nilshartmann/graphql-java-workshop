@@ -38,7 +38,7 @@ In folder `code/userservice` build the UserService and start it:
 
 ```
 cd code/userservice
-./gradew clean bootRun
+./gradlew clean bootRun
 ```
 
 - The User Service application should run now (Output on the console: `Started UserServiceApplication`)
@@ -53,7 +53,7 @@ In folder `code/backend` please build and start the example application we will 
 
 ```
 cd code/backend
-./gradew clean bootRun
+./gradlew clean bootRun
 ```
 
 - The application should now be running (output on the console: `SERVER RUNNING`).
