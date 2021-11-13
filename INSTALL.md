@@ -38,7 +38,7 @@ Im Verzeichnis `code/userservice` den User Service bauen und starten:
 
 ```
 cd code/userservice
-./gradew clean bootRun
+./gradlew clean bootRun
 ```
 
 - Der User Service sollte nun laufen (Ausgabe auf der Konsole: `Started UserServiceApplication`)
@@ -53,7 +53,7 @@ Im Verzeichnis `code/backend` die Beispiel-Anwendung (ProjectMgmtApp) bauen und 
 
 ```
 cd code/backend
-./gradew clean bootRun
+./gradlew clean bootRun
 ```
 
 - Die Applikation sollte nun laufen (Ausgabe auf der Konsole: `SERVER RUNNING`)
